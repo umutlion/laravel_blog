@@ -27,7 +27,7 @@
                         <i class="zmdi zmdi-filter-list"></i>filters</button>
                 </div>
                 <div class="table-data__tool-right">
-                    <a href="{{route('admin.pages.create')}}" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <a href="{{route('pages.create')}}" class="au-btn au-btn-icon au-btn--green au-btn--small">
                         <i class="zmdi zmdi-plus"></i>Sayfa Oluştur</a>
                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                         <select class="js-select2" name="type">
@@ -78,7 +78,7 @@
                                 <a href= "{{route('page', $page->slug)}}" class="item" data-toggle="tooltip" data-placement="top" title="Görüntüle">
                                     <i class="zmdi fa-desktop"></i>
                                 </a>
-                                <a href= "{{route('admin.pages.update', $page->id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <a href= "{{route('pages.update', $page->id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="zmdi zmdi-edit"></i>
                                 </a>
                                 <a href= "#" class="item" data-toggle="tooltip" data-placement="top" title="Send">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="{{route('admin.pages.delete', $page->id)}}">
+                    <form method="post" action="{{route('pages.delete', $page->id)}}">
                         @csrf
                         <input type="hidden" name="id" id="remove_id">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
@@ -134,7 +134,7 @@
             $('.switch').change(function() {
                 id = $(this)[0].getAttribute('page-id');
                 status=$(this).prop('checked');
-                $.get("{{route('admin.pages.switch')}}", {id:id,status:status},  function(data, status) {});
+                $.get("{{route('pages.switch')}}", {id:id,status:status},  function(data, status) {});
             })
         })
 

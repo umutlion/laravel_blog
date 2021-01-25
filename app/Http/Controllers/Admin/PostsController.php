@@ -45,7 +45,7 @@ class PostsController extends Controller
 
         $post->save();
         toastr()->success('Başarılı.', 'Post oluşturma işlemi başarıyla tamamlandı.');
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('posts.index');
     }
 
     public function multipleImageStore(Request $request): \Illuminate\Http\RedirectResponse
@@ -90,7 +90,7 @@ class PostsController extends Controller
 
 
         $post->save();
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('posts.index');
     }
 
     public function switch(Request $request){
@@ -102,7 +102,7 @@ class PostsController extends Controller
     public function delete($id){
         Article::find($id)->delete();
         toastr()->success('Başarılı, Gönderi başarıyla silindi.');
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('posts.index');
     }
 
 

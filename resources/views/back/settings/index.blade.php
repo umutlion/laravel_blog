@@ -5,7 +5,7 @@
     <!-- DATA TABLE -->
     <h3 class="title-5 m-b-35">Ayarlar</h3>
     <div class="card-body">
-        <form method="post" action="{{route('admin.settings.update')}}" enctype="multipart/form-data">
+        <form method="post" action="{{route('settings.update')}}" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">

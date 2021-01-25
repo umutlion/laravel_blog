@@ -41,7 +41,7 @@ class ImageController extends Controller
             $post->image='uploads/'.$imageName;
         }
         $post->save();
-        return redirect()->route('admin.admin_image_add', ['post_id'=>$post_id]);
+        return redirect()->route('admin_image_add', ['post_id'=>$post_id]);
     }
 
     /**
@@ -82,6 +82,6 @@ class ImageController extends Controller
     {
         $data = Image::find($id);
         $data->delete();
-        return redirect()->route('admin.admin_image_add', ['post_id'=>$post_id]);
+        return redirect()->route('admin_image_add', ['post_id'=>$post_id]);
     }
 }

@@ -9,7 +9,7 @@
                             <strong>Post</strong> Oluştur
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                                {{ csrf_field() }}
                                 <div class="row form-group">
                                     <div class="col col-md-3">

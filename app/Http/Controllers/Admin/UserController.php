@@ -81,7 +81,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        return redirect()->route('admin.users.index')->with('success', $user->name. "updated başarılı");
+        return redirect()->route('users.index')->with('success', $user->name. "updated başarılı");
     }
 
     /**
@@ -93,7 +93,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')->with('success', $user->name. "destroy başarılı");
+        return redirect()->route('users.index')->with('success', $user->name. "destroy başarılı");
     }
 
 }

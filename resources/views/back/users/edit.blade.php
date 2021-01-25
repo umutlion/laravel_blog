@@ -4,10 +4,10 @@
     <br>
     <br>
     <div class="d-flex justify-content-between">
-        <a href="{{route('admin.users.create')}}" class="btn btn-primary rounded">Create user</a>
+        <a href="{{route('users.create')}}" class="btn btn-primary rounded">Create user</a>
     </div>
     <h3 class="text-center">Update {{$user->name}}</h3>
-    <form action="{{route('admin.users.update', [$user->id])}}" method="POST">
+    <form action="{{route('users.update', [$user->id])}}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

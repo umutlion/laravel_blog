@@ -62,7 +62,7 @@
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
-            <a href="{{route('admin.dashboard')}}">
+            <a href="{{route('dashboard')}}">
                 <img src="{{asset($setting->logo)}}" alt="Umutlion Logo" />
             </a>
         </div>
@@ -74,23 +74,23 @@
                             <i class="fas fa-tachometer-alt"></i>Post Page</a>
                     </li>
                     <li>
-                        <a href="{{route('admin.posts.index')}}">
+                        <a href="{{route('posts.index')}}">
                             <i class="fas fa-pound-sign"></i>Post Sayfası</a>
                     </li>
                     <li>
-                        <a href="{{route('admin.category.index')}}">
+                        <a href="{{route('category.index')}}">
                             <i class="fas fa-fw fa-list"></i>Kategoriler</a>
                     </li>
                     <li>
-                        <a href="{{route('admin.pages.index')}}">
+                        <a href="{{route('pages.index')}}">
                             <i class="fas fa-fw fa-folder"></i>Eklenebilir Sayfalar</a>
                     </li>
                     <li>
-                        <a href="{{route('admin.users.index')}}">
+                        <a href="{{route('users.index')}}">
                             <i class="fas fa-fw fa-user"></i>Kullanıcılar</a>
                     </li>
                     <li>
-                        <a href="{{route('admin.settings.index')}}">
+                        <a href="{{route('settings.index')}}">
                             <i class="fas fa-fw fa-cogs"></i>Ayarlar</a>
                     </li>
                 </ul>

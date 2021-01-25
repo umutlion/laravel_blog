@@ -42,7 +42,7 @@ class PageController extends Controller
 
         $page->save();
         toastr()->success('Başarılı.', 'Sayfa oluşturma işlemi başarıyla tamamlandı.');
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('pages.index');
     }
 
     public function update($id){
@@ -65,13 +65,13 @@ class PageController extends Controller
 
         $page->save();
         toastr()->success('Başarılı', 'Sayfa başarılı bir şekilde güncelllendi.');
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('pages.index');
     }
 
     public function delete($id){
         Page::find($id)->delete();
         toastr()->success('Başarılı, Sayfa başarıyla silindi.');
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('pages.index');
     }
 
 

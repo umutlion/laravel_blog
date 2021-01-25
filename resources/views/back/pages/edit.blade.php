@@ -9,7 +9,7 @@
                             <strong>page</strong> Güncelle
                         </div>
                         <div class="card-body card-block">
-                            <form method="post" action="{{route('admin.pages.update.post',$page->id)}}" enctype="multipart/form-data" class="form-horizontal">
+                            <form method="post" action="{{route('pages.update.post',$page->id)}}" enctype="multipart/form-data" class="form-horizontal">
                                 @csrf
                                 <div class="row form-group">
                                     <div class="col col-md-3">

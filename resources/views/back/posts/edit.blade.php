@@ -9,7 +9,7 @@
                             <strong>Post</strong> Güncelle
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.posts.update', $post->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <form action="{{route('posts.update', $post->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                                @method('PUT')
                                 {{ csrf_field() }}
                                 <div class="row form-group">

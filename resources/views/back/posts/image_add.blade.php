@@ -9,7 +9,7 @@
                             <strong>{{$data->title}}</strong> Post'unun Görsel İçeriklerini Buradan Oluştur.
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{route('admin.admin_image_store', ['post_id'=>$data->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <form action="{{route('admin_image_store', ['post_id'=>$data->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                                {{ csrf_field() }}
                                 <div class="row form-group">
                                     <div class="col col-md-3">
@@ -85,7 +85,7 @@
                                     <a href= "#" class="item" data-toggle="tooltip" data-placement="top" title="Add">
                                         <i class="zmdi zmdi-image"></i>
                                     </a>
-                                    <a href= "{{route('admin.admin_image_delete', ['id'=>$post->id, 'post_id'=>$data->id])}}" onclick="return confirm('Are you sure?')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <a href= "{{route('admin_image_delete', ['id'=>$post->id, 'post_id'=>$data->id])}}" onclick="return confirm('Are you sure?')" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                     </a>
                                 </div>

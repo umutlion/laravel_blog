@@ -62,7 +62,7 @@
         <div class="card">
             <div class="card-header">Kategori Ekleme Formu</div>
             <div class="card-body card-block">
-                <form class="form-horizontal" action="{{route('admin.category.create')}}" method="post">
+                <form class="form-horizontal" action="{{route('category.create')}}" method="post">
                      @csrf
                     <div class="form-group">
                         <div class="input-group">
@@ -91,7 +91,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('admin.category.update')}}" method="post">
+                    <form action="{{route('category.update')}}" method="post">
                         @csrf
                         <div class="form-check">
                             <label>Kategori Adı</label>
@@ -123,7 +123,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="addCategoryForm" action="{{route('admin.category.create')}}" method="post">
+                    <form id="addCategoryForm" action="{{route('category.create')}}" method="post">
                         @csrf
                         <div class="form-check">
                             <label>Kategori Adı</label>
@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="{{route('admin.category.delete')}}">
+                    <form method="post" action="{{route('category.delete')}}">
                         @csrf
                         <input type="hidden" name="id" id="remove_id">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
@@ -178,7 +178,7 @@
                 id = $(this)[0].getAttribute('category-id');
                 $.ajax({
                     type:'GET',
-                    url:'{{route('admin.category.getdata')}}',
+                    url:'{{route('category.getdata')}}',
                     data:{id:id},
                     success:function(data){
                         console.log(data);

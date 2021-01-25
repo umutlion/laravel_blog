@@ -22,14 +22,14 @@ class HomeController extends Controller
     public function login_post(Request $request){
         if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
             toastr()->success('Selam!', 'Tekrardan hoşgeldin. Welcome back!');
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('dashboard');
         }
-        return redirect()->route('admin.auth.login')->withErrors('Email veya parola hatalı.');
+        return redirect()->route('auth.login')->withErrors('Email veya parola hatalı.');
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('admin.auth.login');
+        return redirect()->route('auth.login');
     }
 
     public function register(){

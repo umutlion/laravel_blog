@@ -27,7 +27,7 @@
                         <i class="zmdi zmdi-filter-list"></i>filters</button>
                 </div>
                 <div class="table-data__tool-right">
-                    <a href="{{route('admin.posts.create')}}" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <a href="{{route('posts.create')}}" class="au-btn au-btn-icon au-btn--green au-btn--small">
                         <i class="zmdi zmdi-plus"></i>add item</a>
                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                         <select class="js-select2" name="type">
@@ -80,13 +80,13 @@
                         </td>
                         <td>
                             <div class="table-data-feature">
-                                <a href= "{{route('admin.admin_image_add', ['post_id'=>$post->id])}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit Gallery">
+                                <a href= "{{route('admin_image_add', ['post_id'=>$post->id])}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit Gallery">
                                     <i class="zmdi zmdi-folder"></i>
                                 </a>
                                 <a href= "#" class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </a>
-                                <a href= "{{route('admin.posts.edit', $post->id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <a href= "{{route('posts.edit', $post->id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="zmdi zmdi-edit"></i>
                                 </a>
                                 <a post-id="{{$post->id}}" post-title="{{$post->title}}" class="item remove-click" data-toggle="tooltip" data-placement="top" title="Delete">
@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="{{route('admin.posts.delete', $post->id)}}">
+                    <form method="post" action="{{route('posts.delete', $post->id)}}">
                         @csrf
                         <input type="hidden" name="id" id="remove_id">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
@@ -139,7 +139,7 @@
             $('.switch').change(function() {
                 id = $(this)[0].getAttribute('post-id');
                 status=$(this).prop('checked');
-                $.get("{{route('admin.switch')}}", {id:id,status:status},  function(data, status) {});
+                $.get("{{route('switch')}}", {id:id,status:status},  function(data, status) {});
             })
         })
 
