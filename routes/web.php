@@ -24,11 +24,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix'=>'admin'], function () {
     Route::group(['middleware'=>'admin.guest'], function () {
-        Route::view('login', 'admin.login')->name('admin.login');
+        Route::view('login', 'back.auth.login')->name('admin.login');
         Route::post('login', [App\Http\Controllers\AdminController::class,'login'])->name('admin.auth');
     });
     Route::group(['middleware'=>'admin.auth'], function () {
-        Route::view('dashboard', 'admin.home')->name('admin.home');
+        Route::view('dashboard', 'back.dashboard')->name('admin.home');
         Route::post('logout', [App\Http\Controllers\AdminController::class,'logout'])->name('admin.logout');
     });
 });
@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin'], function () {
 //Route::post('admin/login', 'App\Http\Controllers\Admin\HomeController@login_post')->name('admin.auth.login.post');
 
 
-Route::prefix('admin')->name('admin.')->middleware('Admin')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['Admin', 'admin.guest', 'admin.auth'])->group(function () {
     //user roles
 
     // posts

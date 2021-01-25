@@ -73,7 +73,14 @@
                                 </div>
                             </div>
                             @else
-                                @include('auth.login')
+                                <div id=text-4 class="widget widget_text akea-widget">
+                                    <h3 class="akea-widget-title"><span class=akea-widget-head-text>Hakkımızda</span><span class=akea-widget-head-divider></span></h3><span class=clear></span>
+
+
+
+                                        @include('auth.login')
+
+                                </div>
                             @endif
                             <div class="gdlr-core-sidebar-item gdlr-core-item-pdlr">
                                 <div id=text-4 class="widget widget_text akea-widget">

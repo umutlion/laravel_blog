@@ -52,7 +52,7 @@
                         </div>
                     @endif
                     <div class="login-form">
-                        <form action="{{route('admin.auth.login.post')}}" method="post">
+                        <form action="{{route('admin.login')}}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label>Email Address</label>
@@ -119,4 +119,3 @@
 </body>
 
 </html>
-<!-- end document-->

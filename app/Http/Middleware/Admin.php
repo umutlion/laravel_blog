@@ -18,7 +18,7 @@ class  Admin
     public function handle(Request $request, Closure $next)
     {
         if(!Auth::check()){#giriş var mı yok mu
-            return redirect()->route('admin.auth.login');
+            return redirect()->route('admin.login');
         }
         return $next($request);
     }

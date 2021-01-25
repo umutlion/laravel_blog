@@ -17,7 +17,7 @@ class AdminController extends Controller
             Auth::guard('admin')->login($user);
             return redirect()->route('admin.home');
         }
-        return redirect()->route('admin.login')->with('status', 'Failed to Process Login');
+        return redirect()->route('auth.login')->with('status', 'Failed to Process Login');
     }
 
     protected function authenticated(Request $request, $user)
@@ -37,7 +37,7 @@ class AdminController extends Controller
         if ($response = $this->loggedOut($request)) {
             return $response;
         }
-
+//https://stackoverflow.com/a/35975283/11205809
         return $request->wantsJson()
             ? new JsonResponse([], 204)
             : redirect('/');
