@@ -24,4 +24,14 @@ class Article extends Model
         return $this->hasOne('App\Models\Image','id','post_id');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments(){
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
+
+
+
 }

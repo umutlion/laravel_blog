@@ -114,7 +114,7 @@ Route::get('/{category}/{slug}', 'App\Http\Controllers\Front\HomepageController@
 Route::get('/contact', 'App\Http\Controllers\Front\HomepageController@contact')->name('contact');
 Route::post('/contact', 'App\Http\Controllers\Front\HomepageController@postcontact')->name('post.contact');
 Route::get('/{sayfa}', 'App\Http\Controllers\Front\HomepageController@page')->name('page');
-
+Route::post('{post}/comment/store', 'App\Http\Controllers\CommentController@store')->name('comment.store');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

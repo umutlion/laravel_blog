@@ -141,35 +141,61 @@
                             </div>
                             <div id=comments class=akea-comments-area>
                                 <div class="akea-comments-title ">1 Yorum</div>
+                                @foreach($post->comments as $comment)
                                 <ol class=comment-list>
                                     <li class="comment even thread-even depth-1" id=li-comment-114>
                                         <article id=comment-114 class=comment-article>
                                             <div class=comment-avatar><img alt src='upload/avatar.jpeg' class='avatar avatar-90 photo' height=90 width=90></div>
                                             <div class=comment-body>
                                                 <header class=comment-meta>
-                                                    <div class="comment-author akea-title-font">John</div>
+                                                    <div class="comment-author akea-title-font">{{$comment->name}}</div>
                                                     <div class="comment-time akea-info-font">
                                                         <a href=index.html#comment-114>
-                                                            <time datetime=2019-01-07T17:24:05+00:00> January 7, 2019 at 5:24 pm </time>
+                                                            <time datetime=2019-01-07T17:24:05+00:00> {{$comment->created_at->diffForHumans()}}</time>
                                                         </a>
                                                     </div>
-                                                    <div class=comment-reply> <a rel=nofollow class=comment-reply-link href='index6b9a.html?replytocom=114#respond' data-commentid=114 data-postid=6613 data-belowelement=comment-114 data-respondelement=respond aria-label='Reply to John'>Reply</a></div>
+                                                    <div class=comment-reply> <a rel=nofollow class=comment-reply-link onclick="document.getElementById('comment_id').value = {{$comment->id}}" href='#' data-commentid=114 data-postid=6613 data-belowelement=comment-114 data-respondelement=respond aria-label='Reply to John'>Reply</a></div>
+                                                    @foreach($comment->replies as $reply)
+                                                        <div id=comment-114 class="comment-article float-md-right pull-right">
+                                                            <div class=comment-avatar><img alt src="https://images.alphacoders.com/451/thumb-1920-451603.jpg" class='avatar avatar-90 photo' height=90 width=90></div>
+                                                            <div class=comment-body>
+                                                                <header class=comment-meta>
+                                                                    <div class="comment-author akea-title-font">{{$reply->name}}</div>
+                                                                    <div class="comment-time akea-info-font">
+                                                                        <a href=index.html#comment-114>
+                                                                            <time datetime=2019-01-07T17:24:05+00:00> {{$reply->created_at->diffForHumans()}}</time>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class=comment-reply> <a rel=nofollow class=comment-reply-link onclick="document.getElementById('comment_id').value = {{$comment->id}}" href='#' data-commentid=114 data-postid=6613 data-belowelement=comment-114 data-respondelement=respond aria-label='Reply to John'>Reply</a></div>
+                                                                </header>
+                                                                <section class=comment-content>
+                                                                    <p>{{$reply->comment}}</p>
+                                                                </section>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 </header>
                                                 <section class=comment-content>
-                                                    <p>comment test</p>
+                                                    <p>{{$comment->comment}}</p>
                                                 </section>
                                             </div>
                                         </article>
                                     </li>
                                 </ol>
+                                @endforeach
+
                                 <div id=respond class=comment-respond>
                                     <h4 id="reply-title" class="comment-reply-title akea-content-font">Leave a Reply <small><a rel=nofollow id=cancel-comment-reply-link href=index.html#respond style=display:none;>Cancel Reply</a></small></h4>
-                                    <form action=# method=post id=commentform class=comment-form novalidate>
+
+
+                                   <form action={{route('comment.store', [$post->id])}} method="post" id=commentform class=comment-form novalidate>
+                                        @csrf
+                                        <input type="hidden" name="comment_id" id="comment_id">
                                         <div class=comment-form-comment>
                                             <textarea id=comment name=comment cols=45 rows=8 aria-required=true placeholder=Comment*></textarea>
                                         </div>
                                         <div class=akea-comment-form-author>
-                                            <input id=author name=author type=text value placeholder=Name* size=30 aria-required=true>
+                                            <input id=author name=name type=text value placeholder=Name* size=30 aria-required=true>
                                         </div>
                                         <div class=akea-comment-form-email>
                                             <input id=email name=email type=text value placeholder=Email* size=30 aria-required=true>
@@ -205,6 +231,10 @@
 
     </div>
 
+@endsection
 
+@section('js')
+    <script>
 
+    </script>
 @endsection
