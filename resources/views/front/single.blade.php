@@ -174,6 +174,7 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
+
                                                 </header>
                                                 <section class=comment-content>
                                                     <p>{{$comment->comment}}</p>
@@ -183,7 +184,7 @@
                                     </li>
                                 </ol>
                                 @endforeach
-
+                                @if(\Illuminate\Support\Facades\Auth::check())
                                 <div id=respond class=comment-respond>
                                     <h4 id="reply-title" class="comment-reply-title akea-content-font">Leave a Reply <small><a rel=nofollow id=cancel-comment-reply-link href=index.html#respond style=display:none;>Cancel Reply</a></small></h4>
 
@@ -191,11 +192,12 @@
                                    <form action={{route('comment.store', [$post->id])}} method="post" id=commentform class=comment-form novalidate>
                                         @csrf
                                         <input type="hidden" name="comment_id" id="comment_id">
+                                        <input type="hidden" name="user_id" id="user_id">
                                         <div class=comment-form-comment>
                                             <textarea id=comment name=comment cols=45 rows=8 aria-required=true placeholder=Comment*></textarea>
                                         </div>
                                         <div class=akea-comment-form-author>
-                                            <input id=author name=name type=text value placeholder=Name* size=30 aria-required=true>
+                                            <input id=author name=name type=text value={{\Illuminate\Support\Facades\Auth::user()->name}} size=30 aria-required=true readonly="readonly">
                                         </div>
                                         <div class=akea-comment-form-email>
                                             <input id=email name=email type=text value placeholder=Email* size=30 aria-required=true>
@@ -221,6 +223,9 @@
                                         </p>
                                     </form>
                                 </div>
+                                @else
+                                <p>Giriş yapınız</p>
+                                    @endif
                             </div>
                         </div>
 
