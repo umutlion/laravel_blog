@@ -103,6 +103,9 @@ Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function ()
     Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('myprofile.edit');
     Route::put('/myprofile/{user}update', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
     Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
+    Route::get('logout', [\App\Http\Controllers\Front\UserController::class, 'logout'])->name('myprofile.logout');
+    Route::get('posts/create', 'App\Http\Controllers\Front\PostsController@create')->name('myprofile.create');
+    Route::post('posts/create/store', 'App\Http\Controllers\Front\PostsController@store')->name('myprofile.create.post');
 
 });
 //      Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('user.edit');

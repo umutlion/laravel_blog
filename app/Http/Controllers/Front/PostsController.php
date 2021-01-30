@@ -6,35 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Page;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Spatie\Permission\Models\Role;
 
-class UserController extends Controller
+class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function __construct()
     {
         view()->share('pages', Page::orderBy('order', 'ASC')->get());
         view()->share('categories', Category::inRandomOrder()->get());
     }
 
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $users = User::all();
-        return view('front.user_profile', compact('users'));
-    }
-
-    public function create() {
-      //
+        return view('front.create_post');
     }
 
     /**
@@ -42,6 +33,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+
+        $categories = Category::all();
+        return view('front.create_post',compact('categories'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -49,7 +46,26 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+    public function store(Request $request)
+    {
+        $post = new Article;
+        $post->user_id=Auth::user()->id;
+        $post->title=$request->input('text-input');
+        $post->category_id=$request->input('selectLg');
+        $post->content=$request->input('content');
+        $post->slug=Str::slug($request->input('text-input'));
 
+        if($request->hasFile('image')){
+            $imageName=Str::slug($request->input('text-input')).'.'.$request->image->extension();
+            $request->image->move(public_path('uploads'),$imageName);
+            $post->image='uploads/'.$imageName;
+        }
+
+
+        $post->save();
+        toastr()->success('Başarılı.', 'Post oluşturma işlemi başarıyla tamamlandı.');
+        return redirect()->route('myuser.myprofile.create');
+    }
 
     /**
      * Display the specified resource.
@@ -61,29 +77,16 @@ class UserController extends Controller
     {
         //
     }
-    public function store(Request $request){
-     //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        if (Auth::user()) {
-            $user = User::find(Auth::user()->id);
-
-            if ($user) {
-                return view('front.user_profile')->withUser($user);
-            } else {
-
-            }
-        } else {
-            return redirect()->back();
-        }
+        //
     }
 
     /**
@@ -91,9 +94,9 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -104,10 +107,8 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function logout(){
-        Auth::logout();
-        return redirect()->back();
+    public function destroy($id)
+    {
+        //
     }
-
-
 }

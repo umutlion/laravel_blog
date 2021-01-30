@@ -15,23 +15,31 @@ class Article extends Model
 {
     use HasFactory;
 
-
-    function getCategory(){
-        return $this->hasOne('App\Models\Category','id','category_id');
+    function getAuthor()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
-    function getImage(){
-        return $this->hasOne('App\Models\Image','id','post_id');
+
+    function getCategory()
+    {
+        return $this->hasOne('App\Models\Category', 'id', 'category_id');
     }
 
-    public function user(){
+    function getImage()
+    {
+        return $this->hasOne('App\Models\Image', 'id', 'post_id');
+    }
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
-
 
 
 }

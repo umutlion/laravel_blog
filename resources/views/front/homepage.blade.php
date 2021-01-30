@@ -67,7 +67,11 @@
                                         </div>
                                         <br>
                                             <div class="button-input">
-                                                <a href="{{route('myuser.myprofile.edit')}}" style="color: black" class="btn btn-outline-success">Profili Gör</a> <a style="color: black" class="btn btn-outline-danger">Çıkış</a>
+                                                <a href="{{route('myuser.myprofile.edit')}}" style="color: black" class="btn btn-outline-success">Profili Gör</a> <a href="{{route('myuser.myprofile.logout')}}" style="color: black" class="btn btn-outline-danger">Çıkış</a>
+                                            </div>
+                                        <hr>
+                                            <div class="button-input">
+                                            <a href="{{route('myuser.myprofile.create')}}" style="color: black" class="btn btn-outline-dark">Makale Ekle</a>
                                             </div>
                                     </div>
                                 </div>
