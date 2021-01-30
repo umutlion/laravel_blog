@@ -99,12 +99,14 @@ Route::prefix('admin')->name('admin.')->middleware(['Admin', 'admin.guest', 'adm
 
 });// User View
 Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function () {
-    Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'index'])->name('myprofile');
-    Route::post('/', [\App\Http\Controllers\Front\UserController::class, 'login_post'])->name('myprofile.post');
-    Route::patch('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
+    Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'index'])->name('myprofile.index');
+    Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('myprofile.edit');
+    Route::put('/myprofile/{user}update', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
+    Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
 
 });
-
+//      Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('user.edit');
+//    Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'update'])->name('user.update');
 
 // Frontend View
 Route::get('/', 'App\Http\Controllers\Front\HomepageController@index')->name('homepage');

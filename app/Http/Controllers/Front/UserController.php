@@ -8,39 +8,27 @@ use App\Models\Page;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use App\Models\Admin;
-use Illuminate\Support\Str;
-
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
-    public function __construct(){
+
+    public function __construct()
+    {
         view()->share('pages', Page::orderBy('order', 'ASC')->get());
         view()->share('categories', Category::inRandomOrder()->get());
-        $this->middleware('Admin');
     }
+
 
     public function index()
     {
-        return view('front.user_profile');
-    }
-
-    public function login(){
-        return view('dashboard');
-    }
-
-    public function myprofile_post(Request $request){
-        if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
-            toastr()->success('Selam!', 'Tekrardan hoşgeldin. Welcome back!');
-            return redirect()->route('/homepage');
-        }
-        return redirect()->route('/homepage')->withErrors('Email veya parola hatalı.');
+        $users = User::all();
+        return view('front.user_profile', compact('users'));
     }
 
     /**
@@ -48,29 +36,22 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
     }
@@ -78,43 +59,43 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(){
-        return view('front.user_profile')->with('user', \auth()->user());
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(Request $request)
+    public function edit(User $user)
     {
-        dd($request->all());
+        if (Auth::user()) {
+            $user = User::find(Auth::user()->id);
+
+            if ($user) {
+                return view('front.user_profile')->withUser($user);
+            } else {
+
+            }
+        } else {
+            return redirect()->back();
+        }
     }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
+    public function update(Request $request, User $user)
+    {
+        $user->update($request->all());
+        return redirect()->route('myuser.myprofile.edit')->with('success', $user->name. "updated başarılı");
+    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
-    {
-        //
-    }
 
 
 }

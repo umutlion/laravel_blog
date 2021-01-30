@@ -67,7 +67,7 @@
                                         </div>
                                         <br>
                                             <div class="button-input">
-                                                <a href="{{route('myuser.myprofile')}}" style="color: black" class="btn btn-outline-success">Profili Gör</a> <a style="color: black" class="btn btn-outline-danger">Çıkış</a>
+                                                <a href="{{route('myuser.myprofile.edit')}}" style="color: black" class="btn btn-outline-success">Profili Gör</a> <a style="color: black" class="btn btn-outline-danger">Çıkış</a>
                                             </div>
                                     </div>
                                 </div>
