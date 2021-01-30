@@ -15,7 +15,7 @@
                     <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider">
                                                              <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author">
                                                                  <img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50>
-                                                                 <a href=# title="Posts by Jane Smith" rel=author>Jane Smith</a>
+                                                                 <a href=# title="Posts by Jane Smith" rel=author>{{$article->getAuthor->name}}</a>
                                                              </span>
                         <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date">
                                                                  <a href=#>{{$article->created_at->diffForHumans()}}</a>

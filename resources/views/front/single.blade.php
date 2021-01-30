@@ -38,7 +38,9 @@
                                                         <meta property=position content=1>
                                                         </span>&#183;<span property=itemListElement typeof=ListItem><a property=item typeof=WebPage title="Go to the Food category archives." href="#" class="taxonomy category"><span property=name>{{$article->getCategory->name}}</span></a>
                                                         <meta property=position content=2>
-                                                        </span>&#183;<span class="post post-post current-item">{{$article->title}}</span></div>
+                                                        </span>&#183;<span class="post post-post current-item">{{$article->title}}</span>
+                                                        <span>{{$article->getAuthor->name}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <h4>{{$article->title}}</h4>

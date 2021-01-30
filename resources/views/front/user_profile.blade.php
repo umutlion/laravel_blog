@@ -24,7 +24,7 @@
                     <i class="fa fa-coffee"></i>
                     This is an <strong>.alert</strong>. Use this to show important messages to the user.
                 </div>
-                <h3>Personal info</h3>
+                <h3>Personal info {{$user->name}}</h3>
 
                 <form class="form-horizontal" action="{{route('myuser.myprofile.update', [$user->id])}}" method="POST" role="form">
                     @csrf

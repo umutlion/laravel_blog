@@ -2,7 +2,7 @@
 @section('title', 'Create Post')
 @section('content')
     <!-- DATA TABLE -->
-
+    <div class="menu-sidebar__content js-scrollbar1">
         <div class="card">
             <div class="card-header">
                 <strong>Post</strong> Oluştur
@@ -76,6 +76,7 @@
             </div>
 
         </div>
+    </div>
         @endsection
         @section('css')
             <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">

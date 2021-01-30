@@ -71,7 +71,7 @@
                                             </div>
                                         <hr>
                                             <div class="button-input">
-                                            <a href="{{route('myuser.myprofile.create')}}" style="color: black" class="btn btn-outline-dark">Makale Ekle</a>
+                                            <a href="{{route('myuser.myprofile.posts.index')}}" style="color: black" class="btn btn-outline-dark">Makalelerim</a>
                                             </div>
                                     </div>
                                 </div>

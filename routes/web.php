@@ -70,7 +70,7 @@ Route::group(['prefix'=>'admin'], function () {
         Route::post('/users/create', 'App\Http\Controllers\Admin\UserController@store')->name('users.store');
         Route::get('/users/{user}/edit', 'App\Http\Controllers\Admin\UserController@edit')->name('users.edit');
         Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
-        Route::delete('/users/{user}/delete', 'App\Http\Controllers\Admin\UserController@destroy')->name('users.destroy');
+        Route::delete('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@destroy')->name('users.destroy');
 
     });
 });
@@ -104,8 +104,14 @@ Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function ()
     Route::put('/myprofile/{user}update', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
     Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
     Route::get('logout', [\App\Http\Controllers\Front\UserController::class, 'logout'])->name('myprofile.logout');
+    Route::get('posts', 'App\Http\Controllers\Front\PostsController@index')->name('myprofile.posts.index');
     Route::get('posts/create', 'App\Http\Controllers\Front\PostsController@create')->name('myprofile.create');
     Route::post('posts/create/store', 'App\Http\Controllers\Front\PostsController@store')->name('myprofile.create.post');
+    Route::get('posts/{post_id}/edit', 'App\Http\Controllers\Front\PostsController@edit')->name('myprofile.edit.post');
+    Route::put('posts/{post_id}/update', 'App\Http\Controllers\Front\PostsController@update')->name('myprofile.update.post');
+    Route::post('posts/{post_id}/delete', 'App\Http\Controllers\Front\PostsController@delete')->name('myprofile.delete.post');
+    Route::get('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@create')->name('myprofile.image.post');
+    Route::post('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@store')->name('myprofile.image.store');
 
 });
 //      Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('user.edit');

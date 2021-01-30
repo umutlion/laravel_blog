@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('front.create_post');
+        $posts = Article::where('user_id', Auth::id())->get();
+        return view('front.posts.index', compact('posts'));
     }
 
     /**
@@ -37,7 +39,7 @@ class PostsController extends Controller
     {
 
         $categories = Category::all();
-        return view('front.create_post',compact('categories'));
+        return view('front.posts.create_post',compact('categories'));
     }
 
     /**
@@ -86,8 +88,11 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post=Article::findOrFail($id);
+        $categories=Category::all();
+        return view('front.posts.edit_post', compact('categories', 'post'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -98,7 +103,22 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Article::findOrFail($id);
+        $post->title=$request->input('text-input');
+        $post->category_id=$request->input('selectLg');
+        $post->content=$request->input('content');
+        $post->slug=Str::slug($request->input('text-input'));
+
+        if($request->hasFile('image')){
+            $imageName=Str::slug($request->input('text-input')).'.'.$request->image->extension();
+            $request->image->move(public_path('uploads'),$imageName);
+            $post->image='uploads/'.$imageName;
+        }
+
+
+        $post->save();
+        toastr()->success('Başarılı, Gönderi başarıyla güncellendi.');
+        return redirect()->back();
     }
 
     /**
@@ -107,8 +127,35 @@ class PostsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function switch(Request $request){
+        $post=Article::findOrFail($request->id);
+        $post->status=$request->status=="true" ? 1 : 0;
+        $post->save();
+    }
+
+    public function delete($id){
+        Article::find($id)->delete();
+        toastr()->success('Başarılı, Gönderi başarıyla silindi.');
+        return redirect()->back();
+    }
+
+    public function multipleImageStore(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //
+
+        foreach($request->file('file') as $image)
+        {
+            $imageName=$image->getClientOriginalName();
+            $image->move(public_path().'/images/', $imageName);
+            $fileNames[] = $imageName;
+
+        }
+
+        $images = json_encode($fileNames);
+
+        // Store $images image in DATABASE from HERE
+        Image::create(['images' => $images]);
+        return back()
+            ->with('success','You have successfully file uplaod.')
+            ->with('files',$fileNames);
     }
 }

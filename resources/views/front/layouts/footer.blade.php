@@ -98,6 +98,8 @@
 <script src="{{asset('front/')}}/vendor/daterangepicker/daterangepicker.js"></script>
 <script src="{{asset('front/')}}/vendor/countdowntime/countdowntime.js"></script>
 <script src="{{asset('front/')}}/js/main.js"></script>
-
+@yield('js')
+@toastr_js
+@toastr_render
 </body>
 </html>

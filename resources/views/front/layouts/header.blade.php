@@ -80,7 +80,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('front/')}}/vendor/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="{{asset('front/')}}/css/util.css">
     <link rel="stylesheet" type="text/css" href="{{asset('front/')}}/css/main.css">
-
+    @toastr_css
+    @yield('css')
 </head>
 
 <body class="home page-template-default page page-id-2039 gdlr-core-body woocommerce-no-js akea-body akea-body-front akea-full  akea-with-sticky-navigation  akea-blockquote-style-1 gdlr-core-link-to-lightbox" data-home-url=index.html>
