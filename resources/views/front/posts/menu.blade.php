@@ -9,7 +9,7 @@
 
                 </li>
                 <li>
-                    <a href="chart.html">
+                    <a href="{{route('myuser.myprofile.posts.comments')}}">
                         <i class="fas fa-chart-bar"></i>Tüm Yorumlarım</a>
                 </li>
                 <li>

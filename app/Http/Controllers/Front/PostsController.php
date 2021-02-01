@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -28,6 +29,16 @@ class PostsController extends Controller
     {
         $posts = Article::where('user_id', Auth::id())->get();
         return view('front.posts.index', compact('posts'));
+    }
+    public function comments(){
+        $comments = Comment::where('user_id', Auth::id())->get();
+        return view('front.posts.most_comments', compact('comments'));
+
+    }
+    public function commentDelete($id){
+        Comment::find($id)->delete();
+        toastr()->success('Başarılı, Yorum başarıyla silindi.');
+        return redirect()->back();
     }
 
     /**

@@ -41,5 +41,9 @@ class Article extends Model
         return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 
+    public function replies(){
+        return $this->hasMany(Comment::class, 'parent_id');
+    }
+
 
 }

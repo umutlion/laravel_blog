@@ -91,7 +91,7 @@
         <div class="akea-mobile-header-container akea-container clearfix">
             <div class="akea-logo  akea-item-pdlr">
                 <div class=akea-logo-inner>
-                    <a class href=# ><img src=upload/logo-2-1.png alt width=140 height=33 title=logo-2></a>
+                    <a class href=# ><img src={{$setting->favicon}} alt width=140 height=33 title=umutlion></a>
                 </div>
             </div>
 
@@ -204,7 +204,7 @@
                                     </div>
                                     <div class="akea-logo  akea-item-pdlr">
                                         <div class=akea-logo-inner>
-                                            <a class href=index.html><img src=upload/logo-2-1.png alt width=140 height=33 title=logo-2></a>
+                                            <a class href=index.html><img src={{$setting->favicon}} alt width=140 height=33 title=logo-2></a>
                                         </div>
                                     </div>
                                 </li>

@@ -11,7 +11,7 @@
 
                 <!-- Main content -->
                 <hr>
-                <section class="content">
+                <<section class="content">
                     <div>
                         <div class="tab-content">
                             <div class="table-responsive table-responsive-data2">
@@ -31,7 +31,9 @@
                                         <tbody>
                                         <tr class="tr-shadow">
                                             <td>{{$post->title}}</td>
-                                            <td>{{$post->image}}</td>
+                                            <td>
+                                                <img src="{{asset($post->image)}}" width="400" height="400">
+                                            </td>
                                             <td>{{$post->getCategory->name}}</td>
                                             <td>{{$post->created_at->diffForHumans()}}</td>
                                             <td>{{$post->hit}}</td>
@@ -57,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                </section>>
                 <!-- /.content -->
             </div>
         </div>

@@ -128,11 +128,13 @@
                                     <div class="gdlr-core-recent-post-widget-wrap gdlr-core-style-1">
                                             <div class="gdlr-core-recent-post-widget clearfix">
                                             @foreach($articles as $post)
+                                                @if($post->hit > 5)
                                                 <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src={{asset($post->image)}} alt width=150 height=150 title=qingbao-meng-330658-unsplash></div>
                                                 <div class=gdlr-core-recent-post-widget-content>
                                                     <div class=gdlr-core-recent-post-widget-title><a href=#>{{$post->title}}</a></div>
                                                     <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Paul Newman" rel=author>Paul Newman</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>{{$post->created_at->diffForHumans()}}</a></span></div>
                                                 </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                     </div>
@@ -140,7 +142,7 @@
                                 <div id=text-5 class="widget widget_text akea-widget">
                                     <div class=textwidget>
                                         <p>
-                                            <a href=#><img src=upload/banner-600.jpg alt width=300 height=600 class="alignnone size-full wp-image-6652"></a>
+                                            <a href=#><img src={{asset('front/')}}/upload/banner-600.jpg alt width=300 height=600 class="alignnone size-full wp-image-6652"></a>
                                         </p>
                                     </div>
                                 </div>
@@ -173,7 +175,7 @@
                                 <div id=text-6 class="widget widget_text akea-widget">
                                     <div class=textwidget>
                                         <p>
-                                            <a href=#><img class="alignnone size-full wp-image-6651" src=upload/banner-250.jpg alt width=300 height=250></a>
+                                            <a href=#><img class="alignnone size-full wp-image-6651" src={{asset('front/')}}/upload/banner-250.jpg alt width=300 height=250></a>
                                         </p>
                                     </div>
                                 </div>
@@ -182,15 +184,15 @@
                                     <div class="gdlr-core-recent-post-widget-wrap gdlr-core-style-full">
                                         <div class="gdlr-core-recent-post-widget clearfix">
                                             <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image">
-                                                <a class="gdlr-core-lightgallery gdlr-core-js " href=upload/post-vr.jpg><img src=upload/post-vr-1000x486.jpg alt width=1000 height=486 title=post-vr></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>Trending</a></span></div>
+                                                <a class="gdlr-core-lightgallery gdlr-core-js " href={{asset('front/')}}/upload/post-vr.jpg><img src={{asset('front/')}}/upload/post-vr-1000x486.jpg alt width=1000 height=486 title=post-vr></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>Trending</a></span></div>
                                             <div class=gdlr-core-recent-post-widget-content>
                                                 <div class="gdlr-core-recent-post-widget-title gdlr-core-title-font"><a href=#>Check Out The Most Awesome VR Headset in 2020</a></div>
-                                                <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Jane Smith" rel=author>Jane Smith</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>November 7, 2019</a></span></div>
+                                                <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='{{asset('front/')}}/upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Jane Smith" rel=author>Jane Smith</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>November 7, 2019</a></span></div>
                                             </div>
                                         </div>
                                         <div class="gdlr-core-recent-post-widget clearfix">
                                             <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image">
-                                                <a class="gdlr-core-lightgallery gdlr-core-js " href=upload/yiran-ding-624696-unsplash.jpg><img src=upload/yiran-ding-624696-unsplash-1000x486.jpg alt width=1000 height=486 title=yiran-ding-624696-unsplash></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>Trending</a></span></div>
+                                                <a class="gdlr-core-lightgallery gdlr-core-js " href={{asset('front/')}}/upload/yiran-ding-624696-unsplash.jpg><img src={{asset('front/')}}/upload/yiran-ding-624696-unsplash-1000x486.jpg alt width=1000 height=486 title=yiran-ding-624696-unsplash></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>Trending</a></span></div>
                                             <div class=gdlr-core-recent-post-widget-content>
                                                 <div class="gdlr-core-recent-post-widget-title gdlr-core-title-font"><a href=#>Or It&#8217;s Now The End of Smartphones?</a></div>
                                                 <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Janet Jones" rel=author>Janet Jones</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>November 7, 2019</a></span></div>
@@ -198,7 +200,7 @@
                                         </div>
                                         <div class="gdlr-core-recent-post-widget clearfix">
                                             <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image">
-                                                <a class="gdlr-core-lightgallery gdlr-core-js " href=upload/christopher-burns-271403-unsplash.jpg><img src=upload/christopher-burns-271403-unsplash-1000x486.jpg alt width=1000 height=486 title=christopher-burns-271403-unsplash></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>Trending</a></span></div>
+                                                <a class="gdlr-core-lightgallery gdlr-core-js " href={{asset('front/')}}/upload/christopher-burns-271403-unsplash.jpg><img src={{asset('front/')}}/upload/christopher-burns-271403-unsplash-1000x486.jpg alt width=1000 height=486 title=christopher-burns-271403-unsplash></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>Trending</a></span></div>
                                             <div class=gdlr-core-recent-post-widget-content>
                                                 <div class="gdlr-core-recent-post-widget-title gdlr-core-title-font"><a href=#>XE Entertainment Brings You New Experience of Fun</a></div>
                                                 <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Kally Gordon" rel=author>Kally Gordon</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>November 7, 2019</a></span></div>
@@ -224,19 +226,19 @@
                                 <div class="gdlr-core-instagram-item gdlr-core-item-pdb  gdlr-core-item-pdlr">
                                     <div class="gdlr-core-instagram-item-content clearfix">
                                         <div class=" gdlr-core-column-12 gdlr-core-column-first gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/43984881_188819121994766_3216343442474950648_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="upload/43984881_188819121994766_3216343442474950648_n7d5a.jpg" width=640 height=640 alt></a>
+                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/43984881_188819121994766_3216343442474950648_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/43984881_188819121994766_3216343442474950648_n7d5a.jpg" width=640 height=640 alt></a>
                                         </div>
                                         <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/45313783_2158345917812845_5821103427645807423_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="upload/45313783_2158345917812845_5821103427645807423_n7d5a.jpg" width=640 height=640 alt></a>
+                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/45313783_2158345917812845_5821103427645807423_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/45313783_2158345917812845_5821103427645807423_n7d5a.jpg" width=640 height=640 alt></a>
                                         </div>
                                         <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/43914986_550843855339634_9131648220594836021_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="upload/43914986_550843855339634_9131648220594836021_n7d5a.jpg" width=640 height=640 alt></a>
+                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/43914986_550843855339634_9131648220594836021_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/43914986_550843855339634_9131648220594836021_n7d5a.jpg" width=640 height=640 alt></a>
                                         </div>
                                         <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/44371528_263042657731432_6452096443180721983_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="upload/44371528_263042657731432_6452096443180721983_n7d5a.jpg" width=640 height=640 alt></a>
+                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/44371528_263042657731432_6452096443180721983_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/44371528_263042657731432_6452096443180721983_n7d5a.jpg" width=640 height=640 alt></a>
                                         </div>
                                         <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/44292623_399451020592905_6536115609442328805_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="upload/44292623_399451020592905_6536115609442328805_n7d5a.jpg" width=640 height=640 alt></a>
+                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/44292623_399451020592905_6536115609442328805_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/44292623_399451020592905_6536115609442328805_n7d5a.jpg" width=640 height=640 alt></a>
                                         </div>
                                     </div>
                                 </div>

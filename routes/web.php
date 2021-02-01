@@ -105,6 +105,9 @@ Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function ()
     Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
     Route::get('logout', [\App\Http\Controllers\Front\UserController::class, 'logout'])->name('myprofile.logout');
     Route::get('posts', 'App\Http\Controllers\Front\PostsController@index')->name('myprofile.posts.index');
+    Route::get('posts/comments', 'App\Http\Controllers\Front\PostsController@comments')->name('myprofile.posts.comments');
+    Route::post('posts/delete/{comment_id}', 'App\Http\Controllers\Front\PostsController@commentDelete')->name('myprofile.commentdelete.post');
+
     Route::get('posts/create', 'App\Http\Controllers\Front\PostsController@create')->name('myprofile.create');
     Route::post('posts/create/store', 'App\Http\Controllers\Front\PostsController@store')->name('myprofile.create.post');
     Route::get('posts/{post_id}/edit', 'App\Http\Controllers\Front\PostsController@edit')->name('myprofile.edit.post');
