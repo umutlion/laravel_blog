@@ -213,40 +213,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="gdlr-core-pbf-wrapper " id="div_2207_14">
-                    <div class=gdlr-core-pbf-background-wrap></div>
-                    <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                        <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                            <div class=gdlr-core-pbf-element>
-                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_2207_15">
-                                    <div class="gdlr-core-title-item-title-wrap ">
-                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_2207_11">Our Instagram<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                </div>
-                            </div>
-                            <div class=gdlr-core-pbf-element>
-                                <div class="gdlr-core-instagram-item gdlr-core-item-pdb  gdlr-core-item-pdlr">
-                                    <div class="gdlr-core-instagram-item-content clearfix">
-                                        <div class=" gdlr-core-column-12 gdlr-core-column-first gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/43984881_188819121994766_3216343442474950648_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/43984881_188819121994766_3216343442474950648_n7d5a.jpg" width=640 height=640 alt></a>
-                                        </div>
-                                        <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/45313783_2158345917812845_5821103427645807423_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/45313783_2158345917812845_5821103427645807423_n7d5a.jpg" width=640 height=640 alt></a>
-                                        </div>
-                                        <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/43914986_550843855339634_9131648220594836021_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/43914986_550843855339634_9131648220594836021_n7d5a.jpg" width=640 height=640 alt></a>
-                                        </div>
-                                        <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/44371528_263042657731432_6452096443180721983_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/44371528_263042657731432_6452096443180721983_n7d5a.jpg" width=640 height=640 alt></a>
-                                        </div>
-                                        <div class=" gdlr-core-column-12 gdlr-core-media-image">
-                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="{{asset('front/')}}/upload/44292623_399451020592905_6536115609442328805_n7d5a.jpg" data-lightbox-group=gdlr-core-img-group-2><img src="{{asset('front/')}}/upload/44292623_399451020592905_6536115609442328805_n7d5a.jpg" width=640 height=640 alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 @endsection

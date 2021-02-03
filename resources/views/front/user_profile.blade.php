@@ -31,8 +31,32 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">First name:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" name="text-input" value="{{$user->name}}">
+                            <input class="form-control" type="text" name="name" value="{{$user->name}}">
 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Company:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" name="company" value="{{$user->company}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" name="email" value="{{$user->email}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Username:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" name="username" value="{{$user->username}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Password: <br><strong>Şifrelenmiş imgelerle gösterilir.</strong></label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="password" name="password" value="{{$user->password}}">
                         </div>
                     </div>
 

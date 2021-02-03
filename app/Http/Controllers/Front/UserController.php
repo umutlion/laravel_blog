@@ -96,7 +96,12 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->name=$request->input('text-input');
+        $user->name=$request->input('name');
+        $user->company=$request->input('company');
+        $user->email=$request->input('email');
+        $user->username=$request->input('username');
+        $user->password=$request->input('password');
+
 
         if($request->hasFile('image')){
             $imageName=Str::slug($request->input('text-input')).'.'.$request->image->extension();
