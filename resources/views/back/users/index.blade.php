@@ -17,13 +17,16 @@
             <th>User Name</th>
             <th>User Email</th>
             <th>User Role</th>
+            <th>İşlemler</th>
         </tr>
         @foreach($users as $user)
         <tr>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>
-                Admin
+                @foreach($user->roles as $role)
+                    {{$role->name}}
+                @endforeach
 
             </td>
             <td>

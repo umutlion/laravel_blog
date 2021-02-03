@@ -6,16 +6,22 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class CheckAdmin
 {
-
+    /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @return mixed
+     */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->roles == 'user') {
-            return $next($request);
-        } else {
-            return redirect('/login')->with('message', 'Login olmanız gerekir');
+        $userRoles = Auth::user()->roles->pluck('name');
+        if (!$userRoles->contains('admin')) {
+            return redirect(route('admin.login'))->with('error', 'permission yok');
         }
+
+        return $next($request);
     }
 }

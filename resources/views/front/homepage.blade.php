@@ -50,6 +50,7 @@
                                     <img class="rounded-circle mx-lg-0 d-block" src="https://external-preview.redd.it/T7OUZIcZUBlW-8rR1MPsyQBl1eoiv7qxr_4ExLcUGh4.jpg?auto=webp&s=382dc80929cd45677fe952fe1f27046b800c2982" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
+                                        <h5>{{\Illuminate\Support\Facades\Auth::user()->roles->pluck('name')}}</h5>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         <div class="akea-main-menu-left-wrap akea-main-menu-left-social clearfix akea-item-pdlr akea-navigation-top">
                                             <a href={{$setting->twitter}} target=_blank class=akea-top-bar-social-icon title=twitter>

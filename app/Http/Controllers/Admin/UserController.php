@@ -96,4 +96,11 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', $user->name. "destroy başarılı");
     }
 
+    public function user_roles(User $user, $id)
+    {
+        $data = User::find($id);
+        $datalist = Role::all()->sortBy('name');
+        return view('admin.user_roles', ['data'=>$data, 'datalist'=>$datalist]);
+    }
+
 }

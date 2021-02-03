@@ -15,9 +15,9 @@ class AdminController extends Controller
         if (Auth::guard('admin')->attempt($credentials, $request->remember)) {
             $user = Admin::where('email', $request->email)->first();
             Auth::guard('admin')->login($user);
-            return redirect()->route('homepage');
+            return redirect()->route('admin.home');
         }
-        return redirect()->route('auth.login')->with('status', 'Failed to Process Login');
+        return redirect()->route('admin.login')->with('status', 'Failed to Process Login');
     }
 
     protected function authenticated(Request $request, $user)
@@ -40,7 +40,7 @@ class AdminController extends Controller
 //https://stackoverflow.com/a/35975283/11205809
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/');
+            : redirect('admin.login');
     }
     protected function loggedOut(Request $request)
     {
