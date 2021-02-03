@@ -108,9 +108,8 @@ Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function ()
 
         Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'index'])->name('myprofile.index');
         Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('myprofile.edit');
-        Route::put('/myprofile/{user}update', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
+        Route::put('/myprofile/{user}/update', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
         Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
-        Route::get('logout', [\App\Http\Controllers\Front\UserController::class, 'logout'])->name('myprofile.logout');
         Route::get('posts', 'App\Http\Controllers\Front\PostsController@index')->name('myprofile.posts.index');
         Route::get('posts/comments', 'App\Http\Controllers\Front\PostsController@comments')->name('myprofile.posts.comments');
         Route::post('posts/delete/{comment_id}', 'App\Http\Controllers\Front\PostsController@commentDelete')->name('myprofile.commentdelete.post');
@@ -123,6 +122,8 @@ Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function ()
         Route::get('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@create')->name('myprofile.image.post');
         Route::post('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@store')->name('myprofile.image.store');
     });
+    Route::get('logout', [\App\Http\Controllers\Front\UserController::class, 'logout'])->name('myprofile.logout');
+
 });
 //      Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('user.edit');
 //    Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'update'])->name('user.update');

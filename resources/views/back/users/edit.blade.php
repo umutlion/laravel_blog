@@ -37,6 +37,14 @@
                    placeholder="Enter user password"
                    value="{{$user->password}}">
         </div>
+        <div class="form-group">
+            @foreach($user->roles as $role)
+            <label for="password">Roles</label>
+                <select name="roles" id="roles" multiple>
+                    <option value="role">{{$role->name}}</option>
+                </select>
+            @endforeach
+        </div>
         <button class="btn btn-success btn-block rounded">Save User</button>
     </form>
 

@@ -62,7 +62,7 @@ class UserController extends Controller
         //
     }
     public function store(Request $request){
-     //
+        //
     }
 
     /**
@@ -93,9 +93,21 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->name=$request->input('text-input');
+
+        if($request->hasFile('image')){
+            $imageName=Str::slug($request->input('text-input')).'.'.$request->image->extension();
+            $request->image->move(public_path('uploads'),$imageName);
+            $user->image='uploads/'.$imageName;
+        }
+
+        $user->save();
+        toastr()->success('Başarılı.', 'User güncelleme işlemi başarıyla tamamlandı.');
+
+        return redirect()->back();
     }
 
     /**
