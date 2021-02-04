@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class TagController extends Controller
@@ -15,22 +16,18 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::paginate(10);
-        return view('back.tag.index', compact('tags'));
+        $tags = Tag::orderBy('created_at', 'DESC')->paginate(20);
+        return view('back.tags.index', compact('tags'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $tag = new Tag;
-        $tag->name = $request->tag;
-        $tag->slug = Str::slug($request->tag);
-        $tag->save();
-        return redirect()->back();
+        return view('back.tags.create');
     }
 
     /**
@@ -41,9 +38,18 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $tags = Tag::create($request->only('name'));
+        $this->validate($request, [
+            'name'=>'required|unique:tags,name',
+        ]);
 
-        return redirect()->back()->with("success", "tag created");
+        $tag = Tag::create([
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name, '-'),
+            'description'=>$request->description,
+        ]);
+
+        toastr()->success('Başarılı.', 'Tag oluşturma işlemi başarıyla tamamlandı.');
+        return redirect()->back();
     }
 
     /**
@@ -54,7 +60,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+       //
     }
 
     /**
@@ -65,7 +71,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('back.tag.index', compact('tag'));
+        return view('back.tags.edit', compact('tag'));
     }
 
     /**
@@ -77,8 +83,17 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        $tag->update($request->only('name'));
-        return redirect()->back()->with("success", "tag created");
+        $this->validate($request, [
+            'name'=>'required|unique:tags,name',
+        ]);
+
+        $tag->name = $request->name;
+        $tag->slug = Str::slug($request->name, '-');
+        $tag->description = $request->description;
+        $tag->save();
+
+        toastr()->success('Başarılı.', 'Tag update işlemi başarıyla tamamlandı.');
+        return redirect()->back();
     }
 
     /**
@@ -89,7 +104,11 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        $tag->delete();
-        return redirect()->back()->with("success", "tag deleted");
+        if($tag){
+            $tag->delete();
+
+            toastr()->success('Başarılı.', 'Tag silme işlemi başarıyla tamamlandı.');
+        }
+        return redirect()->back();
     }
 }

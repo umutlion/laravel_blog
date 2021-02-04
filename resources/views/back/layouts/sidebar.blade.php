@@ -90,6 +90,10 @@
                             <i class="fas fa-fw fa-user"></i>Kullanıcılar</a>
                     </li>
                     <li>
+                        <a href="{{route('tags.index')}}">
+                            <i class="fas fa-fw fa-tags"></i>Tags</a>
+                    </li>
+                    <li>
                         <a href="{{route('settings.index')}}">
                             <i class="fas fa-fw fa-cogs"></i>Ayarlar</a>
                     </li>

@@ -9,11 +9,11 @@
                             <strong>Post</strong> Oluştur
                         </div>
                         <div class="card-body card-block">
-                            <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <form action="{{route('tags.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                                {{ csrf_field() }}
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label class=" form-control-label">Kullanıcı:</label>
+                                        <label class=" form-control-label">Admin:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <p class="form-control-static">{{Auth::user()->name}}</p>
@@ -21,48 +21,16 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label">Post Başlığı / Post Title</label>
+                                        <label for="name" id="name" class=" form-control-label">Tag Başlığı / Tag Title</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="text-input" name="text-input" placeholder="Başlık giriniz..." class="form-control">
+                                        <input type="text" id="name" name="name" placeholder="Başlık giriniz..." class="form-control">
                                         <small class="form-text text-muted">Başlık içeriğiniz için çok önemlidir :)</small>
                                     </div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="selectLg" class=" form-control-label">Kategori</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <select name="selectLg" id="selectLg" class="form-control-lg form-control">
-                                            <option value="0">Lütfen seçim yapınız.</option>
-                                            @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label">Post Etiket / Post Tags</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <label for="tags">Tags</label>
-                                        <input type="text" id="tags" name="tags"  class="form-control">
-                                        <small class="form-text text-muted">Birden fazla tag girişi için "," ile ayırınız...</small>
-
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="file-input" class=" form-control-label">Başlık Görseli</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="file" id="file-input" name="image" class="form-control-file" required>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="textarea-input" class=" form-control-label">İçerik</label>
+                                        <label for="textarea-input" class=" form-control-label">Description</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <textarea id="editor" name="content"  rows="9" placeholder="Lütfen içerik giriniz..." class="form-control"></textarea>

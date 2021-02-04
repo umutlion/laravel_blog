@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Article;
 use App\Models\Category;
@@ -14,32 +16,37 @@ use App\Models\Category;
 class PostsController extends Controller
 {
     //
-    public function show($id){
+    public function show($id)
+    {
         return $id;
     }
 
     //
-    public function index(){
+    public function index()
+    {
         $posts = Article::orderBy('created_at', 'ASC')->get();
         return view('back.posts.index', compact('posts'));
     }
 
-    public function create(){
+    public function create()
+    {
         $categories = Category::all();
-        return view('back.posts.create',compact('categories'));
+        return view('back.posts.create', compact('categories'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $post = new Article;
-        $post->title=$request->input('text-input');
-        $post->category_id=$request->input('selectLg');
-        $post->content=$request->input('content');
-        $post->slug=Str::slug($request->input('text-input'));
+        $post->title = $request->input('text-input');
+        $post->user_id = Auth::user()->id;
+        $post->category_id = $request->input('selectLg');
+        $post->content = $request->input('content');
+        $post->slug = Str::slug($request->input('text-input'));
 
-        if($request->hasFile('image')){
-            $imageName=Str::slug($request->input('text-input')).'.'.$request->image->extension();
-            $request->image->move(public_path('uploads'),$imageName);
-            $post->image='uploads/'.$imageName;
+        if ($request->hasFile('image')) {
+            $imageName = Str::slug($request->input('text-input')) . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads'), $imageName);
+            $post->image = 'uploads/' . $imageName;
         }
 
 
@@ -51,10 +58,9 @@ class PostsController extends Controller
     public function multipleImageStore(Request $request): \Illuminate\Http\RedirectResponse
     {
 
-        foreach($request->file('file') as $image)
-        {
-            $imageName=$image->getClientOriginalName();
-            $image->move(public_path().'/images/', $imageName);
+        foreach ($request->file('file') as $image) {
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path() . '/images/', $imageName);
             $fileNames[] = $imageName;
 
         }
@@ -64,28 +70,29 @@ class PostsController extends Controller
         // Store $images image in DATABASE from HERE
         Image::create(['images' => $images]);
         return back()
-            ->with('success','You have successfully file uplaod.')
-            ->with('files',$fileNames);
+            ->with('success', 'You have successfully file uplaod.')
+            ->with('files', $fileNames);
     }
 
-    public function edit($id){
-        $post=Article::findOrFail($id);
-        $categories=Category::all();
+    public function edit($id)
+    {
+        $post = Article::findOrFail($id);
+        $categories = Category::all();
         return view('back.posts.edit', compact('categories', 'post'));
     }
 
     public function update(Request $request, $id)
     {
         $post = Article::findOrFail($id);
-        $post->title=$request->input('text-input');
-        $post->category_id=$request->input('selectLg');
-        $post->content=$request->input('content');
-        $post->slug=Str::slug($request->input('text-input'));
+        $post->title = $request->input('text-input');
+        $post->category_id = $request->input('selectLg');
+        $post->content = $request->input('content');
+        $post->slug = Str::slug($request->input('text-input'));
 
-        if($request->hasFile('image')){
-            $imageName=Str::slug($request->input('text-input')).'.'.$request->image->extension();
-            $request->image->move(public_path('uploads'),$imageName);
-            $post->image='uploads/'.$imageName;
+        if ($request->hasFile('image')) {
+            $imageName = Str::slug($request->input('text-input')) . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads'), $imageName);
+            $post->image = 'uploads/' . $imageName;
         }
 
 
@@ -93,13 +100,15 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function switch(Request $request){
-        $post=Article::findOrFail($request->id);
-        $post->status=$request->status=="true" ? 1 : 0;
+    public function switch(Request $request)
+    {
+        $post = Article::findOrFail($request->id);
+        $post->status = $request->status == "true" ? 1 : 0;
         $post->save();
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         Article::find($id)->delete();
         toastr()->success('Başarılı, Gönderi başarıyla silindi.');
         return redirect()->route('posts.index');

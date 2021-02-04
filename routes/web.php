@@ -73,8 +73,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/users/{user}/edit', 'App\Http\Controllers\Admin\UserController@edit')->name('users.edit');
         Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
         Route::delete('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@destroy')->name('users.destroy');
-
         Route::get('/users/userrole/{id}', 'App\Http\Controllers\Admin\UserController@user_roles')->name('user.roles');
+
+        Route::resource('tags', 'App\Http\Controllers\TagController');
 
     });
 });
