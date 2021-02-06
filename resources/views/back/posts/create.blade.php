@@ -16,7 +16,7 @@
                                         <label class=" form-control-label">Kullanıcı:</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <p class="form-control-static">{{Auth::user()->name}}</p>
+                                        <p class="form-control-static">{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -39,17 +39,6 @@
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label">Post Etiket / Post Tags</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <label for="tags">Tags</label>
-                                        <input type="text" id="tags" name="tags"  class="form-control">
-                                        <small class="form-text text-muted">Birden fazla tag girişi için "," ile ayırınız...</small>
-
                                     </div>
                                 </div>
                                 <div class="row form-group">

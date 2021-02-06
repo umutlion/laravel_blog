@@ -13,6 +13,8 @@ use App\Models\Image;
  */
 class Article extends Model
 {
+    protected $guarded = ['created_at', 'updated_at'];
+
     use HasFactory;
 
     function getAuthor()
@@ -45,6 +47,8 @@ class Article extends Model
     {
         return $this->hasMany(Comment::class, 'parent_id');
     }
+
+
 
 
 }

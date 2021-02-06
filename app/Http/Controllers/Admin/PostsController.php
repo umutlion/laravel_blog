@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
-use App\Models\Tag;
 use Illuminate\Http\Request;
 
 
@@ -30,12 +29,14 @@ class PostsController extends Controller
 
     public function create()
     {
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('back.posts.create', compact('categories'));
+        return view('back.posts.create', compact(['categories', 'tags']));
     }
 
     public function store(Request $request)
     {
+
         $post = new Article;
         $post->title = $request->input('text-input');
         $post->user_id = Auth::user()->id;
@@ -43,13 +44,12 @@ class PostsController extends Controller
         $post->content = $request->input('content');
         $post->slug = Str::slug($request->input('text-input'));
 
+
         if ($request->hasFile('image')) {
             $imageName = Str::slug($request->input('text-input')) . '.' . $request->image->extension();
             $request->image->move(public_path('uploads'), $imageName);
             $post->image = 'uploads/' . $imageName;
         }
-
-
         $post->save();
         toastr()->success('Başarılı.', 'Post oluşturma işlemi başarıyla tamamlandı.');
         return redirect()->route('posts.index');
