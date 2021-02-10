@@ -57,14 +57,6 @@
                                         <textarea id="editor" name="content"  rows="9" placeholder="Lütfen içerik giriniz..." class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="file-multiple-input" class=" form-control-label">İçerik Görseli Seçiniz:</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                            <input type="file" id="file-multiple-input" name="file[]" accept="image/*" multiple="multiple" class="form-control-file">
-                                    </div>
-                                </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Submit

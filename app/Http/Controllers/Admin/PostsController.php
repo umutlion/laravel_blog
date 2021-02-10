@@ -29,9 +29,8 @@ class PostsController extends Controller
 
     public function create()
     {
-        $tags = Tag::all();
         $categories = Category::all();
-        return view('back.posts.create', compact(['categories', 'tags']));
+        return view('back.posts.create', compact('categories'));
     }
 
     public function store(Request $request)

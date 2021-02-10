@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -19,7 +20,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('back.users.index', compact('users'));
+        $roles = Role::all();
+        return view('back.users.index', compact(['users', 'roles']));
     }
 
     /**
@@ -35,24 +37,24 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $user = User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('back.users.index')->with('success', $user->name. "User created cusses");
+        return redirect()->back()->with('success', $user->name . "User created cusses");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +65,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -74,33 +76,47 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
-        return redirect()->route('users.index')->with('success', $user->name. "updated başarılı");
+        $user = User::find($request->id);
+        $user->name = $request->user;
+        $user->email = Str::slug($request->slug);
+        $user->save();
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with('success', $user->name. "destroy başarılı");
+        return redirect()->route('users.index')->with('success', $user->name . "destroy başarılı");
+    }
+    public function delete($id){
+        User::find($id)->delete();
+        toastr()->success('Başarılı, Kullanıcı başarıyla silindi.');
+        return redirect()->back();
     }
 
     public function user_roles(User $user, $id)
     {
         $data = User::find($id);
         $datalist = Role::all()->sortBy('name');
-        return view('admin.user_roles', ['data'=>$data, 'datalist'=>$datalist]);
+        return view('admin.user_roles', ['data' => $data, 'datalist' => $datalist]);
+    }
+
+    public function getData(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+        return response()->json($user);
     }
 
 }

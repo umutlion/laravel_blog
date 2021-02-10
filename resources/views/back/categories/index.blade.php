@@ -8,7 +8,8 @@
     <div class="table-data__tool">
         <div class="table-data__tool-left"></div>
         <div class="table-data__tool-right">
-            <a  data-target="#addModal" data-toggle="modal" class="au-btn au-btn-icon au-btn--green au-btn--small add-click">
+            <a data-target="#addModal" data-toggle="modal"
+               class="au-btn au-btn-icon au-btn--green au-btn--small add-click">
                 <i class="zmdi zmdi-plus"></i>Kategori Ekle</a>
             <div class="rs-select2--dark rs-select2--sm rs-select2--dark2"></div>
         </div>
@@ -44,10 +45,13 @@
                     <td class="desc">{{$category->articleCount()}}</td>
                     <td>
                         <div class="table-data-feature">
-                            <a category-id="{{$category->id}}" class="item edit-click" data-toggle="tooltip" data-placement="top" title="Edit">
+                            <a category-id="{{$category->id}}" class="item edit-click" data-toggle="tooltip"
+                               data-placement="top" title="Edit">
                                 <i class="zmdi zmdi-edit"></i>
                             </a>
-                            <a category-id="{{$category->id}}" category-name="{{$category->name}}" category-count="{{$category->articleCount()}}" class="item remove-click" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <a category-id="{{$category->id}}" category-name="{{$category->name}}"
+                               category-count="{{$category->articleCount()}}" class="item remove-click"
+                               data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="zmdi zmdi-delete"></i>
                             </a>
                         </div>
@@ -55,33 +59,13 @@
                 </tr>
                 <tr class="spacer"></tr>
                 </tbody>
-                @endforeach
+            @endforeach
         </table>
-    </div>
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">Kategori Ekleme Formu</div>
-            <div class="card-body card-block">
-                <form class="form-horizontal" action="{{route('category.create')}}" method="post">
-                     @csrf
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-user"></i>
-                            </div>
-                            <input type="text" id="text" name="category" placeholder="Kategori Başlığını Giriniz." class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-actions form-group">
-                        <button type="submit" class="btn btn-success btn-block btn-sm">KATEGORİ EKLE</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -113,7 +97,8 @@
         </div>
     </div>
     <!-- Add Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -139,7 +124,8 @@
         </div>
     </div>
     <!-- Remove Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -168,19 +154,20 @@
 @endsection
 @section('css')
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 @endsection
-    @section('js')
+@section('js')
     <script>
-        $(function() {
-            $('.edit-click').click(function (){
+        $(function () {
+            $('.edit-click').click(function () {
                 id = $(this)[0].getAttribute('category-id');
                 $.ajax({
-                    type:'GET',
-                    url:'{{route('category.getdata')}}',
-                    data:{id:id},
-                    success:function(data){
+                    type: 'GET',
+                    url: '{{route('category.getdata')}}',
+                    data: {id: id},
+                    success: function (data) {
                         console.log(data);
                         $('#category').val(data.name);
                         $('#slug').val(data.slug);
@@ -192,13 +179,13 @@
             });
         })
 
-        $(function() {
-            $('.remove-click').click(function (){
+        $(function () {
+            $('.remove-click').click(function () {
                 id = $(this)[0].getAttribute('category-id');
                 count = $(this)[0].getAttribute('category-count');
                 name = $(this)[0].getAttribute('category-name');
-                if(id==5){
-                    $('#postAlert').html(name+' kategorisi silinemez. Diğer silinen kategorilere ait gönderiler <strong> Genel </strong> kategorisine eklenecektir ');
+                if (id == 5) {
+                    $('#postAlert').html(name + ' kategorisi silinemez. Diğer silinen kategorilere ait gönderiler <strong> Genel </strong> kategorisine eklenecektir ');
                     $('#body').show();
                     $('#deleteButton').show();
                     $('#deleteModal').modal();
@@ -207,17 +194,17 @@
 
                 $('#deleteModal').show();
                 $('#remove_id').val(id);
-                $('#postAlert').html(name+ ' kategorisine ait post <strong>bulunmamaktadır</strong>. Silmek istediğine emin misin?');
+                $('#postAlert').html(name + ' kategorisine ait post <strong>bulunmamaktadır</strong>. Silmek istediğine emin misin?');
                 $('#body').hide();
-                if(count>0){
-                    $('#postAlert').html(name+ ' kategorisine ait <strong>'+count+' adet </strong> post bulunmaktadır. Silmek istediğine emin misin?');
+                if (count > 0) {
+                    $('#postAlert').html(name + ' kategorisine ait <strong>' + count + ' adet </strong> post bulunmaktadır. Silmek istediğine emin misin?');
                     $('#body').show();
                 }
                 $('#deleteModal').modal();
             });
         })
 
-        $(document).on('click', '.create-modal', function (){
+        $(document).on('click', '.create-modal', function () {
             $('#create').modal('show');
             $('.form-horizontal').show();
             $('.modal-title').text('Add Post');
@@ -225,7 +212,7 @@
 
 
     </script>
-    @endsection
+@endsection
 
 
 

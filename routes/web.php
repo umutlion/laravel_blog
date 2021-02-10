@@ -69,10 +69,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/users', 'App\Http\Controllers\Admin\UserController@index')->name('users.index');
         Route::get('/users/create', 'App\Http\Controllers\Admin\UserController@create')->name('users.create');
 
+        Route::get('/users/getData', 'App\Http\Controllers\Admin\UserController@getData')->name('users.getdata');
         Route::post('/users/create', 'App\Http\Controllers\Admin\UserController@store')->name('users.store');
-        Route::get('/users/{user}/edit', 'App\Http\Controllers\Admin\UserController@edit')->name('users.edit');
-        Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
-        Route::delete('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@destroy')->name('users.destroy');
+        Route::get('/users/edit', 'App\Http\Controllers\Admin\UserController@edit')->name('users.edit');
+        Route::post('/users/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
+        Route::post('/users/delete/{id}', 'App\Http\Controllers\Admin\UserController@delete')->name('users.delete');
         Route::get('/users/userrole/{id}', 'App\Http\Controllers\Admin\UserController@user_roles')->name('user.roles');
 
         Route::resource('tags', 'App\Http\Controllers\TagController');

@@ -242,11 +242,9 @@
                                                 </li>
                                                 <li class="menu-item menu-item-has-children"><a href=#>Category</a>
                                                     <ul class=sub-menu>
-                                                        <li class="menu-item"><a href=photography.html>Photography</a></li>
-                                                        <li class="menu-item"><a href=travel.html>Travel</a></li>
-                                                        <li class="menu-item"><a href=fashion.html>Fashion</a></li>
-                                                        <li class="menu-item"><a href=food.html>Food</a></li>
-                                                        <li class="menu-item"><a href=technology.html>Technology</a></li>
+                                                        @foreach($categories as  $category)
+                                                        <li class="menu-item"><a href={{route('category', $category->slug)}}>{{$category->name}}</a></li>
+                                                        @endforeach
                                                     </ul>
                                                 </li>
                                                 <li class="menu-item"><a href=about-us.html>About</a></li>

@@ -19,7 +19,7 @@
                                             </div>
                                             <div class="gdlr-core-post-slider-caption gdlr-core-center-align">
                                                 <h3 class="gdlr-core-post-slider-title" id="h3_2207_0"><a href="{{route('single', [$article->getCategory->slug,$article->slug])}}" >{{$article->title}}</a></h3>
-                                                <div class=gdlr-core-post-slider-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class=gdlr-core-blog-info-sep >/</span>{{$article->created_at->diffForHumans()}}</span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class=gdlr-core-blog-info-sep >/</span><a href=# title="Posts by Paul Newman" rel=author>Paul Newman</a></span></div>
+                                                <div class=gdlr-core-post-slider-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class=gdlr-core-blog-info-sep >/</span>{{$article->created_at->diffForHumans()}}</span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class=gdlr-core-blog-info-sep >/</span><a href=# title="Posts by {{$article->getAuthor->name}}" rel=author>{{$article->getAuthor->name}}</a></span></div>
                                             </div>
                                         </div>
                                     </li>
@@ -47,7 +47,7 @@
                             @if(\Illuminate\Support\Facades\Auth::check())
                             <div class="gdlr-core-widget-box-shortcode  gdlr-core-center-align" id="div_2207_10">
                                 <div class="card-header" style="width: 18rem;">
-                                    <img class="rounded-circle mx-lg-0 d-block" src="https://external-preview.redd.it/T7OUZIcZUBlW-8rR1MPsyQBl1eoiv7qxr_4ExLcUGh4.jpg?auto=webp&s=382dc80929cd45677fe952fe1f27046b800c2982" alt="Card image cap">
+                                    <img class="rounded-circle mx-lg-0 d-block" src="{{\Illuminate\Support\Facades\Auth::user()->image}}" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
                                         <h5>{{\Illuminate\Support\Facades\Auth::user()->roles->pluck('name')}}</h5>
@@ -133,18 +133,11 @@
                                                 <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src={{asset($post->image)}} alt width=150 height=150 title=qingbao-meng-330658-unsplash></div>
                                                 <div class=gdlr-core-recent-post-widget-content>
                                                     <div class=gdlr-core-recent-post-widget-title><a href=#>{{$post->title}}</a></div>
-                                                    <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Paul Newman" rel=author>Paul Newman</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>{{$post->created_at->diffForHumans()}}</a></span></div>
+                                                    <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Paul Newman" rel=author>{{$post->getAuthor->name}}</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>{{$post->created_at->diffForHumans()}}</a></span></div>
                                                 </div>
                                                     @endif
                                                 @endforeach
                                             </div>
-                                    </div>
-                                </div>
-                                <div id=text-5 class="widget widget_text akea-widget">
-                                    <div class=textwidget>
-                                        <p>
-                                            <a href=#><img src={{asset('front/')}}/upload/banner-600.jpg alt width=300 height=600 class="alignnone size-full wp-image-6652"></a>
-                                        </p>
                                     </div>
                                 </div>
 
@@ -173,23 +166,16 @@
                                         <a href=# class="tag-cloud-link tag-link-115 tag-link-position-14" id="a_2207_29" aria-label="Travel (10 items)">Travel</a>
                                     </div>
                                 </div>
-                                <div id=text-6 class="widget widget_text akea-widget">
-                                    <div class=textwidget>
-                                        <p>
-                                            <a href=#><img class="alignnone size-full wp-image-6651" src={{asset('front/')}}/upload/banner-250.jpg alt width=300 height=250></a>
-                                        </p>
-                                    </div>
-                                </div>
                                 <div id=gdlr-core-recent-post-widget-3 class="widget widget_gdlr-core-recent-post-widget akea-widget">
                                     <h3 class="akea-widget-title"><span class=akea-widget-head-text>Recent Post</span><span class=akea-widget-head-divider></span></h3><span class=clear></span>
-                                    @foreach($tests as $test)
+                                    @foreach($recents as $recent)
                                     <div class="gdlr-core-recent-post-widget-wrap gdlr-core-style-full">
                                         <div class="gdlr-core-recent-post-widget clearfix">
                                             <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image">
-                                                <a class="gdlr-core-lightgallery gdlr-core-js " href={{asset('front/')}}/upload/post-vr.jpg><img src={{$test->image}} alt width=1000 height=486 title=post-vr></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>{{$test->getCategory->name}}</a></span></div>
+                                                <a class="gdlr-core-lightgallery gdlr-core-js " href={{asset('front/')}}/upload/post-vr.jpg><img src={{$recent->image}} alt width=1000 height=486 title=post-vr></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>{{$recent->getCategory->name}}</a></span></div>
                                             <div class=gdlr-core-recent-post-widget-content>
-                                                <div class="gdlr-core-recent-post-widget-title gdlr-core-title-font"><a href=#>{{$test->title}}</a></div>
-                                                <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='{{asset('front/')}}/upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Jane Smith" rel=author>{{$test->getAuthor->name}}</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>{{$test->created_at->diffForHumans()}}</a></span></div>
+                                                <div class="gdlr-core-recent-post-widget-title gdlr-core-title-font"><a href=#>{{$recent->title}}</a></div>
+                                                <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='{{asset('front/')}}/upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Jane Smith" rel=author>{{$recent->getAuthor->name}}</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>{{$recent->created_at->diffForHumans()}}</a></span></div>
                                             </div>
                                         </div>
 

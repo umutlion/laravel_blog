@@ -15,7 +15,7 @@ class AdminController extends Controller
         if (Auth::guard('admin')->attempt($credentials, $request->remember)) {
             $user = Admin::where('email', $request->email)->first();
             Auth::guard('admin')->login($user);
-            return redirect()->route('admin.home');
+            return redirect()->route('homepage');
         }
         return redirect()->route('admin.login')->with('status', 'Failed to Process Login');
     }

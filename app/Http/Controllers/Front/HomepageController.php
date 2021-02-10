@@ -36,7 +36,7 @@ class HomepageController extends Controller
         $data['articles'] = Article::orderBy('created_at', 'DESC')->paginate(10);
         $data['hits'] = Article::orderBy('hit', 'DESC')->limit(5)->get();
         $data['articles']->withPath(url('page'));
-        $data['tests'] = Article::orderBy('id','DESC')->take(5)->get();
+        $data['recents'] = Article::orderBy('id','DESC')->take(5)->get();
         return view('front.homepage', $data);
     }
 
