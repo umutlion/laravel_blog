@@ -132,7 +132,7 @@
                                                 @if($post->hit > 5)
                                                 <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image"><img src={{asset($post->image)}} alt width=150 height=150 title=qingbao-meng-330658-unsplash></div>
                                                 <div class=gdlr-core-recent-post-widget-content>
-                                                    <div class=gdlr-core-recent-post-widget-title><a href=#>{{$post->title}}</a></div>
+                                                    <div class=gdlr-core-recent-post-widget-title><a href={{route('single', [$article->getCategory->slug,$article->slug])}}>{{$post->title}}</a></div>
                                                     <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Paul Newman" rel=author>{{$post->getAuthor->name}}</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>{{$post->created_at->diffForHumans()}}</a></span></div>
                                                 </div>
                                                     @endif
@@ -174,7 +174,7 @@
                                             <div class="gdlr-core-recent-post-widget-thumbnail gdlr-core-media-image">
                                                 <a class="gdlr-core-lightgallery gdlr-core-js " href={{asset('front/')}}/upload/post-vr.jpg><img src={{$recent->image}} alt width=1000 height=486 title=post-vr></a><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><a href=# rel=tag>{{$recent->getCategory->name}}</a></span></div>
                                             <div class=gdlr-core-recent-post-widget-content>
-                                                <div class="gdlr-core-recent-post-widget-title gdlr-core-title-font"><a href=#>{{$recent->title}}</a></div>
+                                                <div class="gdlr-core-recent-post-widget-title gdlr-core-title-font"><a href={{route('single', [$article->getCategory->slug,$article->slug])}}>{{$recent->title}}</a></div>
                                                 <div class=gdlr-core-recent-post-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><img alt src='{{asset('front/')}}/upload/avatar.jpeg' class='avatar avatar-50 photo' height=50 width=50><a href=# title="Posts by Jane Smith" rel=author>{{$recent->getAuthor->name}}</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><a href=#>{{$recent->created_at->diffForHumans()}}</a></span></div>
                                             </div>
                                         </div>

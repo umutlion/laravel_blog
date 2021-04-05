@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\UserController;
-use Illuminate\Foundation\Application;
+
 
 use Inertia\Inertia;
 
@@ -72,11 +71,19 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/users/getData', 'App\Http\Controllers\Admin\UserController@getData')->name('users.getdata');
         Route::post('/users/create', 'App\Http\Controllers\Admin\UserController@store')->name('users.store');
         Route::get('/users/edit', 'App\Http\Controllers\Admin\UserController@edit')->name('users.edit');
-        Route::post('/users/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
+        Route::post('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
         Route::post('/users/delete/{id}', 'App\Http\Controllers\Admin\UserController@delete')->name('users.delete');
-        Route::get('/users/userrole/{id}', 'App\Http\Controllers\Admin\UserController@user_roles')->name('user.roles');
 
-        Route::resource('tags', 'App\Http\Controllers\TagController');
+        Route::get('userrole/{id}', 'App\Http\Controllers\Admin\UserController@user_roles')->name('admin_user_roles');
+        Route::post('userrolestore/{id}', 'App\Http\Controllers\Admin\UserController@user_role_store')->name('admin_user_role_add');
+        Route::get('userroledelete/{userid}/{roleid}', 'App\Http\Controllers\Admin\UserController@user_role_delete')->name('admin_user_role_delete');
+
+        Route::get('/tags', 'App\Http\Controllers\TagController@index')->name('tags.index');
+        Route::post('/tags/create', 'App\Http\Controllers\TagController@create')->name('tag.create');
+        Route::post('/tags/update', 'App\Http\Controllers\TagController@update')->name('tag.update');
+        Route::post('/tags/delete', 'App\Http\Controllers\TagController@delete')->name('tag.delete');
+        Route::get('/tags/getData', 'App\Http\Controllers\TagController@getData')->name('tag.getdata');
+
 
     });
 });
@@ -139,6 +146,8 @@ Route::get('/contact', 'App\Http\Controllers\Front\HomepageController@contact')-
 Route::post('/contact', 'App\Http\Controllers\Front\HomepageController@postcontact')->name('post.contact');
 Route::get('/{sayfa}', 'App\Http\Controllers\Front\HomepageController@page')->name('page');
 Route::post('{post}/comment/store', 'App\Http\Controllers\CommentController@store')->name('comment.store');
+Route::post('/getpost', 'App\Http\Controllers\Front\HomepageController@getpost')->name('getpost');
+Route::get('/postlist/{search}', 'App\Http\Controllers\Front\HomepageController@postlist')->name('postlist');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

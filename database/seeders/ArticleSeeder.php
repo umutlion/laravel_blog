@@ -18,14 +18,15 @@ class ArticleSeeder extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for($i=0;$i<4;$i++){
+        for($i=1;$i<5;$i++){
             $title=$faker->sentence(6);
             DB::table('articles')->insert([
                 'category_id'=>rand(1,5),
-                'user_id'=>0,
+                'user_id'=>$i,
                 'title'=>$title,
                 'image'=>$faker->imageUrl(800, 400, 'cats', true, 'umutlion'),
                 'content'=>$faker->paragraph(6),
+                'hit'=>rand(3,90),
                 'slug'=>Str::slug($title),
                 'created_at'=>$faker->dateTime('now'),
                 'updated_at'=>now()

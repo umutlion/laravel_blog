@@ -26,7 +26,8 @@ class Admin extends Migration
             $table->string('ulke');
             $table->string('sehir');
             $table->string('hobileriniz');
-            $table->timestamps();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('created_at')->nullable();
         });
     }
 

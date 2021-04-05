@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PageSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(SettingSeeder::class);
-        Admin::factory()->create();
+        $this->call(ContactSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }
