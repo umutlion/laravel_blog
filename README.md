@@ -5,6 +5,8 @@ Hi!  A user registration system that manages two types of users:  Admin  and Nor
 You can add category, posts. Then you can update, publish/unpublish actions. Normal users can **comment** on the posts they want. 
 
 
+If you don't have Composer on your computer, you can download it here.
+
 [Download Composer](https://getcomposer.org/download/)
 
 
