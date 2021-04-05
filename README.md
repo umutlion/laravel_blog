@@ -1,8 +1,14 @@
 # Laravel Blog!
 
-Hi! A user registration system that manages two types of users:  Admin  and Normal Users. 
+Hi!  A user registration system that manages two types of users:  Admin  and Normal Users. 
 
 You can add category, posts. Then you can update, publish/unpublish actions. Normal users can **comment** on the posts they want. 
+
+
+[Download Composer](https://getcomposer.org/download/)
+
+
+
 
 ## Installation
 
@@ -17,7 +23,8 @@ $ php artisan serve
 ## How to settings
 If you want rebuild to database, run this command.
 ```
-$ php artisan migrate:fresh --seed
+$ php artisan migrate
+$ php artisan db:seed
 ```
 And then,
 
@@ -25,4 +32,4 @@ And then,
 email: laraveltest@testmail.com
 password: 123456789
 ```
-You can login.
+You can Admin panel.
