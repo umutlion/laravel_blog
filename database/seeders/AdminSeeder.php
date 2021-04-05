@@ -14,17 +14,17 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->insert([
-            'name'=>'Umut',
-            'surname'=>'Çaylı',
-            'username'=>'umutlion',
-            'email'=>'umutcaayli@gmail.com',
-            'password'=>bcrypt(123321),
+            'name'=>'Laravel',
+            'surname'=>'Testing',
+            'username'=>'tester',
+            'email'=>'laraveltest@testmail.com',
+            'password'=>bcrypt(123456789),
             'twitter'=>'https://twitter.com/kafadanpilot',
             'github'=>'https://github.com/umutlion',
             'job'=>'Backend Developer',
             'ulke'=>'Turkiye',
             'sehir'=>'Istanbul',
-            'hobileriniz'=>'Futbol maçı izlemek, kod yazmak bir hobi değildir ve bir sürü daha şey var.',
+            'hobileriniz'=>'empty',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);
