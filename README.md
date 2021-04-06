@@ -19,6 +19,7 @@ $ git clone https://github.com/umutlion/laravel_blog.git
 $ cd laravel_blog
 $ cp .env.example .env
 $ composer install
+$ php artisan key:generate
 $ php artisan serve
 ```
 
