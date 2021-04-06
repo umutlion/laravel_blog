@@ -34,4 +34,12 @@ And then,
 email: laraveltest@testmail.com
 password: 123456789
 ```
-You can Admin panel.
+You can Admin panel. ( localhost:8000/admin )
+
+If you want to login with example user,
+
+```
+email: usertest@testmail.com
+password: 123456789
+```
+
