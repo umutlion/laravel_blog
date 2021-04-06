@@ -70,7 +70,7 @@
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
                     <li class="has-sub">
-                        <a class="js-arrow" href="{{route('admin.home')}}">
+                        <a class="js-arrow" href="{{route('dashboard')}}">
                             <i class="fas fa-tachometer-alt"></i>Anasayfa</a>
                     </li>
                     <li>

@@ -17,20 +17,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker=Faker::create();
-        for($i=1;$i<5;$i++){
-            DB::table('users')->insert([
-                'id'=>$i,
-                'name' => Str::random(10),
-                'lastname'=>Str::random(5),
-                'company'=>'Made By Sense',
-                'email' => Str::random(10).'@gmail.com',
-                'username'=> Str::random(10),
-                'password'=>bcrypt(123456789),
-                'created_at'=>$faker->dateTime('now'),
-                'updated_at'=>now()
-            ]);
-        }
-
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'lastname' => Str::random(5),
+            'company' => 'Made By Sense',
+            'email' => 'usertest@testmail.com',
+            'username' => Str::random(10),
+            'image'=>'https://picsum.photos/536/354',
+            'password' => bcrypt(123456789),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

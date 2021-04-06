@@ -18,6 +18,7 @@
                     This is an <strong>.alert</strong>. Use this to show important messages to the user.
                 </div>
                 <h3>Personal info {{$user->name}}</h3>
+                <a href="{{route('myuser.myprofile.posts.index')}}">Makalelerinizi görüntülemek için tıklayınız...</a>
 
                 <form class="form-horizontal" action="{{route('myuser.myprofile.update', [$user->id])}}" method="POST" role="form" enctype="multipart/form-data">
                     @csrf

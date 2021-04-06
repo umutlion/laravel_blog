@@ -111,28 +111,26 @@ Route::prefix('admin')->name('admin.')->middleware(['Admin', 'admin.guest', 'adm
     // posts
 
 });// User View
-Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function () {
 
-    Route::middleware('admin.auth')->group(function () {
 
-        Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'index'])->name('myprofile.index');
-        Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('myprofile.edit');
-        Route::put('/myprofile/{user}/update', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
-        Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
-        Route::get('posts', 'App\Http\Controllers\Front\PostsController@index')->name('myprofile.posts.index');
-        Route::get('posts/comments', 'App\Http\Controllers\Front\PostsController@comments')->name('myprofile.posts.comments');
-        Route::post('posts/delete/{comment_id}', 'App\Http\Controllers\Front\PostsController@commentDelete')->name('myprofile.commentdelete.post');
+Route::middleware('admin.guest')->prefix('myuser')->name('myuser.')->group(function () {
 
-        Route::get('posts/create', 'App\Http\Controllers\Front\PostsController@create')->name('myprofile.create');
-        Route::post('posts/create/store', 'App\Http\Controllers\Front\PostsController@store')->name('myprofile.create.post');
-        Route::get('posts/{post_id}/edit', 'App\Http\Controllers\Front\PostsController@edit')->name('myprofile.edit.post');
-        Route::put('posts/{post_id}/update', 'App\Http\Controllers\Front\PostsController@update')->name('myprofile.update.post');
-        Route::post('posts/{post_id}/delete', 'App\Http\Controllers\Front\PostsController@delete')->name('myprofile.delete.post');
-        Route::get('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@create')->name('myprofile.image.post');
-        Route::post('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@store')->name('myprofile.image.store');
-    });
+    Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'index'])->name('myprofile.index');
+    Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('myprofile.edit');
+    Route::put('/myprofile/{user}/update', [\App\Http\Controllers\Front\UserController::class, 'update'])->name('myprofile.update');
+    Route::put('/users/{user}/update', 'App\Http\Controllers\Admin\UserController@update')->name('users.update');
+    Route::get('posts', 'App\Http\Controllers\Front\PostsController@index')->name('myprofile.posts.index');
+    Route::get('posts/comments', 'App\Http\Controllers\Front\PostsController@comments')->name('myprofile.posts.comments');
+    Route::post('posts/delete/{comment_id}', 'App\Http\Controllers\Front\PostsController@commentDelete')->name('myprofile.commentdelete.post');
+
+    Route::get('posts/create', 'App\Http\Controllers\Front\PostsController@create')->name('myprofile.create');
+    Route::post('posts/create/store', 'App\Http\Controllers\Front\PostsController@store')->name('myprofile.create.post');
+    Route::get('posts/{post_id}/edit', 'App\Http\Controllers\Front\PostsController@edit')->name('myprofile.edit.post');
+    Route::put('posts/{post_id}/update', 'App\Http\Controllers\Front\PostsController@update')->name('myprofile.update.post');
+    Route::post('posts/{post_id}/delete', 'App\Http\Controllers\Front\PostsController@delete')->name('myprofile.delete.post');
+    Route::get('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@create')->name('myprofile.image.post');
+    Route::post('posts/create/{post_id}', 'App\Http\Controllers\Front\ImageController@store')->name('myprofile.image.store');
     Route::get('logout', [\App\Http\Controllers\Front\UserController::class, 'logout'])->name('myprofile.logout');
-
 });
 //      Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('user.edit');
 //    Route::get('edit/user',  [\App\Http\Controllers\Front\UserController::class, 'update'])->name('user.update');
