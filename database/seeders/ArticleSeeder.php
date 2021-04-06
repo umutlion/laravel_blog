@@ -24,6 +24,7 @@ class ArticleSeeder extends Seeder
                 'category_id'=>rand(1,5),
                 'user_id'=>1,
                 'title'=>$title,
+                'status'=>1,
                 'image'=>$faker->imageUrl(800, 400, 'cats', true, 'umutlion'),
                 'content'=>$faker->paragraph(6),
                 'hit'=>rand(3,90),
