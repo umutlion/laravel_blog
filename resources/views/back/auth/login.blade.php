@@ -41,11 +41,6 @@
         <div class="container">
             <div class="login-wrap">
                 <div class="login-content">
-                    <div class="login-logo">
-                        <a href="#">
-                            <img src="{{asset('back/')}}/images/icon/png1.png" width="300" height="200" alt="CoolAdmin">
-                        </a>
-                    </div>
                     @if($errors->any())
                         <div class="alert alert-danger">
                             {{$errors->first()}}
@@ -72,18 +67,8 @@
                             </div>
                             <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Giriş</button>
                             <div class="social-login-content">
-                                <div class="social-button">
-                                    <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
-                                    <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
-                                </div>
-                            </div>
                         </form>
-                        <div class="register-link">
-                            <p>
-                                Don't you have account?
-                                <a href="#">Sign Up Here</a>
-                            </p>
-                        </div>
+
                     </div>
                 </div>
             </div>

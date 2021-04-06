@@ -26,10 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->share('setting', Settings::find(1));
-        Route::resourceVerbs([
-            'create' => 'create',
-        ]);
+
+        //view()->share('setting', Settings::find(1));
+        //Route::resourceVerbs([
+        //    'create' => 'create',
+        //]);
 
         Schema::defaultStringLength(191);
 

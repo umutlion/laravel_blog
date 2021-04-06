@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -12,7 +13,8 @@ class CategoryController extends Controller
 {
     public function index(){
         $categories = Category::all();
-        return view('back.categories.index', compact('categories'));
+        $setting=Settings::find(1);
+        return view('back.categories.index', compact('categories', 'setting'));
     }
 
     public function create(Request $request){

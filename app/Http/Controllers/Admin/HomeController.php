@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Page;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 use App\Models\Admin;
@@ -11,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     //
+    public function __construct()
+    {
+        view()->share('setting', Settings::find(1));
+    }
+
     public function index(){
         return view('back.dashboard');
     }

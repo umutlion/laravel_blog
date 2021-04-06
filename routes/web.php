@@ -79,10 +79,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('userroledelete/{userid}/{roleid}', 'App\Http\Controllers\Admin\UserController@user_role_delete')->name('admin_user_role_delete');
 
         Route::get('/tags', 'App\Http\Controllers\TagController@index')->name('tags.index');
-        Route::post('/tags/create', 'App\Http\Controllers\TagController@create')->name('tag.create');
-        Route::post('/tags/update', 'App\Http\Controllers\TagController@update')->name('tag.update');
-        Route::post('/tags/delete', 'App\Http\Controllers\TagController@delete')->name('tag.delete');
-        Route::get('/tags/getData', 'App\Http\Controllers\TagController@getData')->name('tag.getdata');
+        Route::post('/tags/create', 'App\Http\Controllers\TagController@create')->name('tags.create');
+        Route::post('/tags/update', 'App\Http\Controllers\TagController@update')->name('tags.update');
+        Route::post('/tags/delete', 'App\Http\Controllers\TagController@delete')->name('tags.delete');
+        Route::get('/tags/getData', 'App\Http\Controllers\TagController@getData')->name('tags.getdata');
 
 
     });
@@ -113,7 +113,7 @@ Route::prefix('admin')->name('admin.')->middleware(['Admin', 'admin.guest', 'adm
 });// User View
 Route::middleware('Admin')->prefix('myuser')->name('myuser.')->group(function () {
 
-    Route::middleware('admins')->group(function () {
+    Route::middleware('admin.auth')->group(function () {
 
         Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'index'])->name('myprofile.index');
         Route::get('/myprofile', [\App\Http\Controllers\Front\UserController::class, 'edit'])->name('myprofile.edit');
@@ -149,6 +149,4 @@ Route::post('{post}/comment/store', 'App\Http\Controllers\CommentController@stor
 Route::post('/getpost', 'App\Http\Controllers\Front\HomepageController@getpost')->name('getpost');
 Route::get('/postlist/{search}', 'App\Http\Controllers\Front\HomepageController@postlist')->name('postlist');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+

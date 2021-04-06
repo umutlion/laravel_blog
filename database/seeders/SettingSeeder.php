@@ -16,6 +16,9 @@ class SettingSeeder extends Seeder
     {
         DB::table('settings')->insert([
             'title'=>'Umutlion Personal Blog',
+            'status'=>1,
+            'logo'=>'https://source.unsplash.com/random',
+            'favicon'=>'https://source.unsplash.com/random',
             'created_at'=>now(),
             'updated_at'=>now(),
         ]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 
@@ -15,6 +16,11 @@ use App\Models\Category;
 class PostsController extends Controller
 {
     //
+    public function __construct()
+    {
+        view()->share('setting', Settings::find(1));
+    }
+
     public function show($id)
     {
         return $id;

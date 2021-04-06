@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        view()->share('setting', Settings::find(1));
+    }
+
     public function index(){
         $pages=Page::all();
         return view('back.pages.index', compact('pages'));

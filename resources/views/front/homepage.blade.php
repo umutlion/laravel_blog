@@ -12,17 +12,19 @@
                             <div class="gdlr-core-flexslider flexslider gdlr-core-js-2 " data-type=slider data-effect=default data-nav=navigation data-disable-autoslide=1>
                                 <ul class=slides>
                                     @foreach($articles as $article)
-                                    <li>
-                                        <div class=gdlr-core-post-slider-slide>
-                                            <div class="gdlr-core-post-slider-image gdlr-core-media-image">
-                                                <a href={{route('single', [$article->getCategory->slug,$article->slug])}}><img src="{{$article->image}}" alt width=1500 height=635 title=pexels-photo-736166><span class=gdlr-core-post-slider-overlay id="span_2207_0"></span></a>
-                                            </div>
-                                            <div class="gdlr-core-post-slider-caption gdlr-core-center-align">
-                                                <h3 class="gdlr-core-post-slider-title" id="h3_2207_0"><a href="{{route('single', [$article->getCategory->slug,$article->slug])}}" >{{$article->title}}</a></h3>
-                                                <div class=gdlr-core-post-slider-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class=gdlr-core-blog-info-sep >/</span>{{$article->created_at->diffForHumans()}}</span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class=gdlr-core-blog-info-sep >/</span><a href=# title="Posts by {{$article->getAuthor->name}}" rel=author>{{$article->getAuthor->name}}</a></span></div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        @if($article->status == 1)
+                                            <li>
+                                                <div class=gdlr-core-post-slider-slide>
+                                                    <div class="gdlr-core-post-slider-image gdlr-core-media-image">
+                                                        <a href={{route('single', [$article->getCategory->slug,$article->slug])}}><img src="{{$article->image}}" alt width=1500 height=635 title=pexels-photo-736166><span class=gdlr-core-post-slider-overlay id="span_2207_0"></span></a>
+                                                    </div>
+                                                    <div class="gdlr-core-post-slider-caption gdlr-core-center-align">
+                                                        <h3 class="gdlr-core-post-slider-title" id="h3_2207_0"><a href="{{route('single', [$article->getCategory->slug,$article->slug])}}" >{{$article->title}}</a></h3>
+                                                        <div class=gdlr-core-post-slider-widget-info><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class=gdlr-core-blog-info-sep >/</span>{{$article->created_at->diffForHumans()}}</span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class=gdlr-core-blog-info-sep >/</span><a href=# title="Posts by {{$article->getAuthor->name}}" rel=author>{{$article->getAuthor->name}}</a></span></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>

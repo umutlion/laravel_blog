@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Category;
+use App\Models\Page;
+use App\Models\Settings;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        view()->share('setting', Settings::find(1));
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');

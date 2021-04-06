@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Page;
+use App\Models\Settings;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,13 +25,16 @@ class UserController extends Controller
     {
         view()->share('pages', Page::orderBy('order', 'ASC')->get());
         view()->share('categories', Category::inRandomOrder()->get());
+        view()->share('setting', Settings::find(1));
+
     }
 
 
     public function index()
     {
         $users = User::all();
-        return view('front.user_profile', compact('users'));
+        $setting=Settings::find(1);
+        return view('front.user_profile', compact('users', 'setting'));
     }
 
     public function create() {

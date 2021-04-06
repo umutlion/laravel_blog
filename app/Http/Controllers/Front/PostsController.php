@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Page;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -28,11 +29,13 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Article::where('user_id', Auth::id())->get();
-        return view('front.posts.index', compact('posts'));
+        $setting=Settings::find(1);
+        return view('front.posts.index', compact('posts', 'setting'));
     }
     public function comments(){
         $comments = Comment::where('user_id', Auth::id())->get();
-        return view('front.posts.most_comments', compact('comments'));
+        $setting=Settings::find(1);
+        return view('front.posts.most_comments', compact('comments', 'setting'));
 
     }
     public function commentDelete($id){

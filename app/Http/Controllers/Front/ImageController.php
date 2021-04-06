@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Page;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -24,7 +25,10 @@ class ImageController extends Controller
     {
         view()->share('pages', Page::orderBy('order', 'ASC')->get());
         view()->share('categories', Category::inRandomOrder()->get());
+        view()->share('setting', Settings::find(1));
+
     }
+
     public function index()
     {
         //
@@ -33,21 +37,21 @@ class ImageController extends Controller
     public function create($post_id)
     {
         $data = Article::find($post_id);
-        $images = DB::table('images')->where('post_id','=', $post_id)->get();
-        return view('front.posts.image_gallery', ['data'=>$data, 'images'=>$images]);
+        $images = DB::table('images')->where('post_id', '=', $post_id)->get();
+        return view('front.posts.image_gallery', ['data' => $data, 'images' => $images]);
 
     }
 
     public function store(Request $request, $post_id)
     {
         $post = new Image;
-        $post->title=$request->input('text-input');
-        $post->post_id=$post_id;
+        $post->title = $request->input('text-input');
+        $post->post_id = $post_id;
 
-        if($request->hasFile('image')){
-            $imageName=Str::slug($request->input('text-input')).'.'.$request->image->extension();
-            $request->image->move(public_path('uploads'),$imageName);
-            $post->image='uploads/'.$imageName;
+        if ($request->hasFile('image')) {
+            $imageName = Str::slug($request->input('text-input')) . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads'), $imageName);
+            $post->image = 'uploads/' . $imageName;
         }
         $post->save();
         return redirect()->back();
@@ -56,7 +60,7 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Image  $image
+     * @param \App\Models\Image $image
      * @return \Illuminate\Http\Response
      */
     public function show(Image $image)
@@ -67,7 +71,7 @@ class ImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Image  $image
+     * @param \App\Models\Image $image
      * @return \Illuminate\Http\Response
      */
     public function edit(Image $image)
@@ -78,8 +82,8 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Image  $image
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Image $image
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Image $image)
@@ -91,6 +95,6 @@ class ImageController extends Controller
     {
         $data = Image::find($id);
         $data->delete();
-        return redirect()->route('myuser.myprofile.image.post', ['post_id'=>$post_id]);
+        return redirect()->route('myuser.myprofile.image.post', ['post_id' => $post_id]);
     }
 }

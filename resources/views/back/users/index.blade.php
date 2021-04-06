@@ -27,14 +27,17 @@
                     </label>
                 </th>
                 <th>User Name</th>
+                <th>User Lastname</th>
+                <th>User Company</th>
+                <th>User username</th>
                 <th>User Email</th>
                 <th>User Role</th>
                 <th>User Avatar</th>
-                <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ISLEMLER</th>
+                <th>ISLEMLER</th>
             </tr>
             </thead>
 
-            @foreach($users as $user)
+            @foreach($datalist as $user)
                 <tbody>
                 <tr class="tr-shadow">
                     <td>
@@ -44,13 +47,39 @@
                         </label>
                     </td>
                     <td>{{$user->name}}</td>
-                    <td class="desc">{{$user->email}}</td>
+                    @if($user->last_name)
+                        <td>{{$user->last_name}}</td>
+                    @else
+                        <td><strong><b>NULL</b></strong></td>
+                    @endif
+                    @if($user->company)
+                        <td>{{$user->company}}</td>
+                    @else
+                        <td><strong><b>NULL</b></strong></td>
+                    @endif
+                    @if($user->username)
+                        <td>{{$user->username}}</td>
+                    @else
+                        <td><strong><b>NULL</b></strong></td>
+                    @endif
+                    @if($user->email)
+                        <td class="desc">{{$user->email}}</td>
+                    @else
+                        <td><strong><b>NULL</b></strong></td>
+                    @endif
                     <td>
                         @foreach($user->roles as $role)
                             {{$role->name}}
                         @endforeach
+                        <a href="{{route('admin_user_roles', ['id'=>$user->id])}}" onclick="return !window.open(this.href, '', 'top=50, left=100 width=800, height=600')">
+                            <i class="nav-icon fas fa-plus-circle"></i>
+                        </a>
                     </td>
-                    <td><img src="{{asset($user->image)}}" height="200" width="200"> </td>
+                    @if($user->image)
+                        <td><img src="{{asset($user->image)}}" height="200" width="200"> </td>
+                    @else
+                        <td><strong><b>NULL</b></strong></td>
+                    @endif
                     <td>
                         <div class="table-data-feature">
                             <a user-id="{{$user->id}}" class="item edit-click" data-toggle="tooltip"
@@ -67,49 +96,6 @@
                 </tbody>
             @endforeach
         </table>
-    </div>
-
-    <!-- Edit Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Kullanıcı Düzenle</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{route('users.update')}}" method="post">
-                        @csrf
-                        <div class="form-check">
-                            <label>Kullanıcı Adı</label>
-                            <input id="user" type="text" class="form-control" name="user">
-                            <input type="hidden" name="id" id="user_id">
-                        </div>
-                        <div class="form-check">
-                            <label>Kullanıcı Slug</label>
-                            <input id="slug" type="text" class="form-control" name="slug">
-                        </div>
-                        <div class="form-check">
-                            <label>Kullanıcı Role</label>
-                            <select name="selectLg" id="selectLg" class="form-control-lg form-control">
-
-                                @foreach($roles as $role)
-                                    <option value="{{$role->name}}">{{$role->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                            <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
     </div>
     <!-- Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -131,7 +117,7 @@
                         </div>
                         <div class="form-check">
                             <label>Kullanıcı Email</label>
-                            <input id="user" type="text" class="form-control" name="email">
+                            <input id="email" type="text" class="form-control" name="email">
                         </div>
                         <div class="form-check">
                             <label>Kullanıcı Parola</label>
@@ -141,33 +127,6 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
                             <button type="submit" class="btn btn-primary">Kullanıcı Ekle</button>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Remove Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Kullanıcı Sil</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger" id="postAlert">
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <form method="post" action="{{route('users.delete', $user->id)}}">
-                        @csrf
-                        <input type="hidden" name="id" id="remove_id">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                        <button id="deleteButton" type="submit" class="btn btn-primary">Kullanıcı Sil</button>
                     </form>
                 </div>
             </div>

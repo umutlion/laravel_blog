@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Settings;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,7 @@ class HomepageController extends Controller
     {
         view()->share('pages', Page::orderBy('order', 'ASC')->get());
         view()->share('categories', Category::inRandomOrder()->get());
+        view()->share('setting', Settings::find(1));
     }
 
     public function index()

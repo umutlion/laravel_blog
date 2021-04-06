@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'company'=>'Made By Sense',
                 'email' => Str::random(10).'@gmail.com',
                 'username'=> Str::random(10),
-                'password' => Hash::make('password'),
+                'password'=>bcrypt(123456789),
                 'created_at'=>$faker->dateTime('now'),
                 'updated_at'=>now()
             ]);

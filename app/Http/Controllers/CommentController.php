@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+
+
     public function store(CommentStoreRequest $request, Article $post)
     {
         $post->comments()->create([

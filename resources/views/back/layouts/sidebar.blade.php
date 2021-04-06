@@ -63,15 +63,15 @@
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
             <a href="{{route('dashboard')}}">
-                <img src="{{asset($setting->logo)}}" alt="Umutlion Logo" />
+                <h1>Umutlion</h1>
             </a>
         </div>
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
                     <li class="has-sub">
-                        <a class="js-arrow" href="">
-                            <i class="fas fa-tachometer-alt"></i>Post Page</a>
+                        <a class="js-arrow" href="{{route('admin.home')}}">
+                            <i class="fas fa-tachometer-alt"></i>Anasayfa</a>
                     </li>
                     <li>
                         <a href="{{route('posts.index')}}">
